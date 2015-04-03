@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-01
+ * Date: 2015-04-02
  *
  * This program contains implementations of a binary tree, composed of nodes.
  *
@@ -129,17 +129,17 @@ void BinaryNode::PrintTree()
 }
 
 // This method returns the number of elements under and including the given node.
-int BinaryNode::Count()
+int BinaryNode::CountNodes()
 {
   int sum = 1;
 
   if( left != NULL )
   {
-    sum += (*left).Count();
+    sum += (*left).CountNodes();
   }
   if( right != NULL )
   {
-    sum += (*right).Count();
+    sum += (*right).CountNodes();
   }
 
   return sum;

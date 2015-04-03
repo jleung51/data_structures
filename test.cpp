@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-01
+ * Date: 2015-04-02
  *
  * This program tests implementations of the binary tree in binary_node.cpp.
  *
@@ -42,7 +42,7 @@ int main()
   assert( found != NULL );
   std::cout << "Test 6: (This is the test)\n";
 
-  int sum = root.Count();
+  int sum = root.CountNodes();
   std::cout << "Test 7: 3 = " << sum << "\n";
 
 
@@ -65,6 +65,12 @@ int main()
   root.PrintTree();
   std::cout << "\n";
 
+
+  root.RemoveSorted( 3 );
+  root.RemoveSorted( 7 );
+  std::cout << "Test 9: [ 0 5 8 9 ] = ";
+  root.PrintTree();
+  std::cout << "\n";
 
   return 0;
 }
