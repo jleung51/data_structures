@@ -18,6 +18,7 @@ CFLAGS = -g -Wall
 # $ make
 out: $(SOURCES) $(HSOURCES)
 	g++ $(CFLAGS) $(SOURCES) -o out
+	# To run the output file, enter ./out
 
 # $ make clean
 # Removes created files
