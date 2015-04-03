@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-02
+ * Date: 2015-04-03
  *
  * This program contains implementations of a binary tree, composed of nodes.
  *
@@ -15,9 +15,10 @@
 
 
 // This constructor initializes the given value of a new binary node.
-BinaryNode::BinaryNode( int num )
+template <class T>
+BinaryNode<T>::BinaryNode( T new_value )
 {
-  value = num;
+  value = new_value;
   left = NULL;
   right = NULL;
 }
@@ -48,20 +49,23 @@ BinaryNode::~BinaryNode()
 // ESSENTIAL METHODS:
 
 // This method returns the value of the binary node.
-int BinaryNode::GetValue()
+template <class T>
+T BinaryNode<T>::GetValue()
 {
   return value;
 }
 
 // This method assigns a new value to the binary node.
-void BinaryNode::SetValue( int num )
+template <class T>
+void BinaryNode<T>::SetValue( T new_value )
 {
-  value = num;
+  value = new_value;
   return;
 }
 
 // This method assigns a new node to an empty node pointer.
-void BinaryNode::AssignNode( BinaryNode* new_node, direction d )
+template <class T>
+void BinaryNode<T>::AssignNode( BinaryNode* new_node, direction d )
 {
   if( d == LEFT )
   {
@@ -79,7 +83,8 @@ void BinaryNode::AssignNode( BinaryNode* new_node, direction d )
 
 // This method removes all nodes below the given node in the given direction, but does not
 // remove the current node.
-void BinaryNode::RemoveNode( direction d )
+template <class T>
+void BinaryNode<T>::RemoveNode( direction d )
 {
   if( d == LEFT )
   {
@@ -95,12 +100,12 @@ void BinaryNode::RemoveNode( direction d )
 
 
 
-
 // UTILITY METHODS:
 
 // Only for use by PrintTree().
 // This method recursively prints the elements of a binary tree tree in order from left to right.
-void BinaryNode::PrintTree_()
+template <class T>
+void BinaryNode<T>::PrintTree_()
 {
   if( left != NULL )
   {
@@ -119,7 +124,8 @@ void BinaryNode::PrintTree_()
 
 // This wrapper method recursively prints the elements of a binary tree in order from left to
 // right, formatted.
-void BinaryNode::PrintTree()
+template <class T>
+void BinaryNode<T>::PrintTree()
 {
   std::cout << "[ ";
   PrintTree_();
@@ -129,7 +135,8 @@ void BinaryNode::PrintTree()
 }
 
 // This method returns the number of elements under and including the given node.
-int BinaryNode::CountNodes()
+template <class T>
+T BinaryNode<T>::CountNodes()
 {
   int sum = 1;
 
@@ -146,7 +153,8 @@ int BinaryNode::CountNodes()
 }
 
 // This method returns nonzero if the node in the given direction exists, and 0 otherwise.
-int BinaryNode::NodeExists( direction d )
+template <class T>
+T BinaryNode<T>::NodeExists( direction d )
 {
   int node_found = 0;
 

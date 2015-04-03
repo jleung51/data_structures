@@ -7,10 +7,11 @@ enum direction
   RIGHT
 };
 
+template <typename Type>
 class BinaryNode
 {
   private:
-    int value;
+    Type value;
     BinaryNode* left;
     BinaryNode* right;
 
@@ -18,30 +19,30 @@ class BinaryNode
 
   public:
 
-    // binary_tree_basic.cpp
+    // Methods from binary_tree_basic.cpp:
 
-    BinaryNode( int num );
+    BinaryNode<Type>( Type num );
 
     // ESSENTIAL METHODS:
-    int GetValue();
-    void SetValue( int num );
+    Type GetValue();
+    void SetValue( Type num );
     void AssignNode( BinaryNode* new_node, direction d );  // Assigns a new child node.
     void RemoveNode( direction d );  // Removes a child node.
     // UTILITY METHODS:
     void PrintTree();  // Prints nodes from left to right
-    int CountNodes();
-    int NodeExists( direction d );  // Returns nonzero if the node's direction d is non-null.
+    Type CountNodes();
+    Type NodeExists( direction d );  // Returns nonzero if the node's direction d is non-null.
 
 
-    // binary_tree_sorted.cpp
+    // Methods from binary_tree_sorted.cpp:
 
     // SORTED BINARY TREE METHODS:
     // Called by the root of the binary tree unless otherwise specified.
     void Sort(); //TODO
-    BinaryNode* Search( int target );  // Returns the pointer of the target, or NULL if not found.
+    BinaryNode* Search( Type target );  // Returns the pointer of the target, or NULL if not found.
     void InsertSorted( BinaryNode* node );
-    void RemoveSorted( int num );  // Nothing happens if the value is not found or the root is the
-                                   // node to be removed.
+    void RemoveSorted( Type num );  // Nothing happens if the value is not found or the root is the
+                                 // node to be removed.
 };
 
 #endif
