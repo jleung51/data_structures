@@ -15,8 +15,6 @@
 int main()
 {
   BinaryNode<int> root( 1 );
-  root.SetValue( 1 );
-  std::cout << "Value is " << root.GetValue() << ".\n" ;
   BinaryNode<int> node1( 1 );
   BinaryNode<int> node2( 2 );
 
@@ -47,7 +45,7 @@ int main()
   int sum = root.CountNodes();
   std::cout << "Test 7: 3 = " << sum << "\n";
 
-/*
+
   root.RemoveNode( LEFT );
   root.RemoveNode( RIGHT );
   root.SetValue( 5 );
@@ -73,6 +71,6 @@ int main()
   std::cout << "Test 9: [ 0 5 8 9 ] = ";
   root.PrintTree();
   std::cout << "\n";
-*/
+
   return 0;
 }
