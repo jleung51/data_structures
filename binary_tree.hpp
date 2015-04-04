@@ -1,5 +1,17 @@
+/*
+ *
+ * Name: Jeffrey Leung
+ * Date: 2015-04-03
+ *
+ * This program contains implementations of a binary tree, composed of nodes.
+ *
+ */
+
 #ifndef BINARY_NODE_HPP
 #define BINARY_NODE_HPP
+
+#include <iostream>
+#include <assert.h>
 
 enum direction
 {
