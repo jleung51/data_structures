@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-02
+ * Date: 2015-04-03
  *
  * This program tests implementations of the binary tree in binary_node.cpp.
  *
@@ -14,9 +14,9 @@
 
 int main()
 {
-  BinaryNode root( 1 );
-  BinaryNode node1( 1 );
-  BinaryNode node2( 2 );
+  BinaryNode<int> root( 1 );
+  BinaryNode<int> node1( 1 );
+  BinaryNode<int> node2( 2 );
 
   node1.SetValue( 2 );
 
@@ -38,7 +38,7 @@ int main()
   root.PrintTree();
   std::cout << " = [ 2 1 2 ]\n";
 
-  BinaryNode* found = root.Search( 1 );
+  BinaryNode<int>* found = root.Search( 1 );
   assert( found != NULL );
   std::cout << "Test 6: (This is the test)\n";
 
@@ -50,11 +50,11 @@ int main()
   root.RemoveNode( RIGHT );
   root.SetValue( 5 );
 
-  BinaryNode node0 = BinaryNode( 0 );
-  BinaryNode node3 = BinaryNode( 3 );
-  BinaryNode node8 = BinaryNode( 8 );
-  BinaryNode node7 = BinaryNode( 7 );
-  BinaryNode node9 = BinaryNode( 9 );
+  BinaryNode<int> node0 = BinaryNode<int>( 0 );
+  BinaryNode<int> node3 = BinaryNode<int>( 3 );
+  BinaryNode<int> node8 = BinaryNode<int>( 8 );
+  BinaryNode<int> node7 = BinaryNode<int>( 7 );
+  BinaryNode<int> node9 = BinaryNode<int>( 9 );
 
   root.InsertSorted( &node0 );
   root.InsertSorted( &node3 );
