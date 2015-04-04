@@ -14,46 +14,7 @@
 
 
 
-// This constructor initializes the given value of a new binary node.
-template <class T>
-BinaryNode<T>::BinaryNode( T new_value )
-{
-  value = new_value;
-  left = NULL;
-  right = NULL;
-}
-
-/*
-// This destructor recursively removes all subnodes as well as the current node.
-BinaryNode::~BinaryNode()
-{
-  if( this != NULL )
-  {
-		
-    if( left != NULL )
-    {
-      (*left).~BinaryNode();
-    }
-    if( right != NULL )
-    {
-      (*right).~BinaryNode();
-    }
-
-    delete this;
-	}
-}
-*/
-
-
-
 // ESSENTIAL METHODS:
-
-// This method returns the value of the binary node.
-template <class T>
-T BinaryNode<T>::GetValue()
-{
-  return value;
-}
 
 // This method assigns a new value to the binary node.
 template <class T>
@@ -61,6 +22,13 @@ void BinaryNode<T>::SetValue( T new_value )
 {
   value = new_value;
   return;
+}
+
+// This method returns the value of the binary node.
+template <class T>
+T BinaryNode<T>::GetValue()
+{
+  return value;
 }
 
 // This method assigns a new node to an empty node pointer.
@@ -136,7 +104,7 @@ void BinaryNode<T>::PrintTree()
 
 // This method returns the number of elements under and including the given node.
 template <class T>
-T BinaryNode<T>::CountNodes()
+int BinaryNode<T>::CountNodes()
 {
   int sum = 1;
 
@@ -154,7 +122,7 @@ T BinaryNode<T>::CountNodes()
 
 // This method returns nonzero if the node in the given direction exists, and 0 otherwise.
 template <class T>
-T BinaryNode<T>::NodeExists( direction d )
+int BinaryNode<T>::NodeExists( direction d )
 {
   int node_found = 0;
 
