@@ -47,6 +47,7 @@ class BinaryNode
 
     // UTILITY METHODS:
     void PrintTree();  // Prints nodes from left to right
+    void PrintNodes();  // Prints a description of nodes and their hierarchy //TODO
     int CountNodes();
     int NodeExists( direction d );  // Returns nonzero if the node's direction d is non-null.
 
