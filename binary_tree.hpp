@@ -234,11 +234,11 @@ int BinaryNode<T>::CountNodes()
 
   if( left != NULL )
   {
-    sum += (*left).CountNodes();
+    sum += left->CountNodes();
   }
   if( right != NULL )
   {
-    sum += (*right).CountNodes();
+    sum += right->CountNodes();
   }
 
   return sum;
@@ -290,11 +290,11 @@ BinaryNode<T>* BinaryNode<T>::Search( const T TARGET )
   }
   else if( TARGET < value && left != NULL )
   {
-    found = (*left).Search( TARGET );
+    found = left->Search( TARGET );
   }
   else if( TARGET > value && right != NULL )
   {
-    found = (*right).Search( TARGET );
+    found = right->Search( TARGET );
   }
 
   return found;
