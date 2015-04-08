@@ -35,9 +35,9 @@ class BinaryNode
   public:
 
     // Constructor
-    BinaryNode( T new_value )
+    BinaryNode( T initial_value )
     {
-      value  = new_value;
+      value  = initial_value;
       left   = NULL;
       right  = NULL;
       parent = NULL;
@@ -47,21 +47,22 @@ class BinaryNode
     void SetValue( T num );
     T GetValue();
     void AssignNode( BinaryNode* new_node, direction d );  // Assigns a new child node.
-    void RemoveNode( direction d );  // Removes a child node.
+    void RemoveNode();
 
     // UTILITY METHODS:
     void PrintTree();  // Prints nodes from left to right
     void PrintNodes();  // Prints a description of nodes and their hierarchy.
                         // Describes how the binary tree should be drawn visually.
-    int CountNodes();
+    int CountNodes();  // Includes itself and all child nodes.
     int NodeExists( direction d );  // Returns nonzero if the node's direction d is non-null.
 
     // SORTED BINARY TREE (numerical) METHODS:
     // Called by the root of the binary tree unless otherwise specified.
     void Sort(); //TODO
-    BinaryNode* Search( T target );  // Returns the pointer of the target, or NULL if not found.
+    BinaryNode* Search( const T TARGET );  // Returns pointer of the target, or NULL if not found.
     void InsertSorted( BinaryNode* node );
-    void RemoveSorted( T num );  // Nothing happens if the value is not found or the root is the
+    void RemoveSorted( T num );  // All nodes below are removed as well.
+                                 // Nothing happens if the value is not found or the root is the
                                  // node to be removed.
 };
 
@@ -98,22 +99,24 @@ void BinaryNode<T>::AssignNode( BinaryNode* new_node, direction d )
     assert( right == NULL );
     right = new_node;
   }
+  new_node->parent = this;
 
   return;
 }
 
-// This method removes all nodes below the given node in the given direction, but does not
-// remove the current node.
+// This method removes the given node.
 template <class T>
-void BinaryNode<T>::RemoveNode( direction d )
+void BinaryNode<T>::RemoveNode()
 {
-  if( d == LEFT )
+  if( parent->left == this )
   {
-    left = NULL;
+    parent->left = NULL;
+    parent = NULL;
   }
-  else if( d == RIGHT )
+  else if( parent->right == this )
   {
-    right = NULL;
+    parent->right = NULL;
+    parent = NULL;
   }
 
   return;
@@ -124,7 +127,7 @@ void BinaryNode<T>::RemoveNode( direction d )
 // UTILITY METHODS:
 
 // Only for use by PrintTree().
-// This method recursively prints the elements of a binary tree tree in order from left to right.
+// This method recursively prints the elements of a binary tree in order from left to right.
 template <class T>
 void BinaryNode<T>::PrintTree_()
 {
@@ -251,7 +254,7 @@ int BinaryNode<T>::NodeExists( direction d )
   {
     if( left != NULL )
     {
-      node_found = 1;
+      node_found = -1;
     }
   }
 
@@ -259,7 +262,7 @@ int BinaryNode<T>::NodeExists( direction d )
   {
     if( right != NULL )
     {
-      node_found = 2;
+      node_found = 1;
     }
   }
 
@@ -277,21 +280,21 @@ int BinaryNode<T>::NodeExists( direction d )
 // is not found.
 // Called by the root.
 template <class T>
-BinaryNode<T>* BinaryNode<T>::Search( T target )
+BinaryNode<T>* BinaryNode<T>::Search( const T TARGET )
 {
   BinaryNode* found = NULL;
 
-  if( value == target )
+  if( value == TARGET )
   {
     found = this;
   }
-  else if( value < target && left != NULL )
+  else if( TARGET < value && left != NULL )
   {
-    found = (*left).Search( target );
+    found = (*left).Search( TARGET );
   }
-  else if( value > target && right != NULL )
+  else if( TARGET > value && right != NULL )
   {
-    found = (*right).Search( target );
+    found = (*right).Search( TARGET );
   }
 
   return found;
@@ -302,7 +305,9 @@ BinaryNode<T>* BinaryNode<T>::Search( T target )
 template <class T>
 void BinaryNode<T>::InsertSorted( BinaryNode<T>* node )
 {
-  BinaryNode* node_search = this;
+  BinaryNode* node_search = this;  // Future parent pointer of the new node
+
+  // While the node has not yet been assigned
   while( node_search->left != node && node_search->right != node )
   {
     // Less than or equal to the current node
@@ -311,6 +316,7 @@ void BinaryNode<T>::InsertSorted( BinaryNode<T>* node )
       if( node_search->left == NULL )
       {
         node_search->left = node;
+        node->parent = node_search;
       }
       else
       {
@@ -324,6 +330,7 @@ void BinaryNode<T>::InsertSorted( BinaryNode<T>* node )
       if( node_search->right == NULL )
       {
         node_search->right = node;
+        node->parent = node_search;
       }
       else
       {
@@ -336,42 +343,26 @@ void BinaryNode<T>::InsertSorted( BinaryNode<T>* node )
 }
 
 // This method removes the first appearance of a node with the given value in a sorted binary tree.
+// All nodes below it are removed as well.
 // Nothing happens if the value is not found or the node to be removed is the root.
 template <class T>
 void BinaryNode<T>::RemoveSorted( T num )
 {
-  BinaryNode* node_search = this;
+  BinaryNode* node_remove = Search( num );
 
-  while( num != node_search->value )
+
+  if( node_remove != NULL )
   {
-
-    if( node_search->left != NULL && num == node_search->left->value )
+    // If the node is its parent's left child
+    if( node_remove->parent->left == node_remove )
     {
-      node_search->left = NULL;
-      return;
-    }
-    else if( node_search->right != NULL && num == node_search->right->value )
-    {
-      node_search->right = NULL;
-      return;
+      node_remove->parent->left = NULL;
     }
 
-    if( num < node_search->value )
+    // If the node is its parent's right child
+    else if( node_remove->parent->right == node_remove )
     {
-      if( node_search->left == NULL )
-      {
-        return;
-      }
-      node_search = node_search->left;
-    }
-
-    else if( num > node_search->value )
-    {
-      if( node_search->right == NULL )
-      {
-        return;
-      }
-      node_search = node_search->right;
+      node_remove->parent->right = NULL;
     }
   }
 
