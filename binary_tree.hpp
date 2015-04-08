@@ -49,7 +49,7 @@ class BinaryNode
 
     // UTILITY METHODS:
     void PrintTree();  // Prints nodes from left to right
-    void PrintNodes();  // Prints a description of nodes and their hierarchy.  //TODO
+    void PrintNodes();  // Prints a description of nodes and their hierarchy.
                         // Describes how the binary tree should be drawn visually.
     int CountNodes();
     int NodeExists( direction d );  // Returns nonzero if the node's direction d is non-null.
@@ -176,15 +176,25 @@ void BinaryNode<T>::PrintNodes_( unsigned int depth )
   std::cout << "Node: " << value << "\n";
 
   // Left/right pointers:
+
+  PrintNodes_Depth( depth );
   if( left != NULL )
   {
-    PrintNodes_Depth( depth );
     std::cout << "Left of " << value << ":  " << left->value << "\n";
   }
+  else
+  {
+    std::cout << "There are no nodes to the left of " << value << ".\n";
+  }
+
+  PrintNodes_Depth( depth );
   if( right != NULL )
   {
-    PrintNodes_Depth( depth );
     std::cout << "Right of " << value << ": " << right->value << "\n";
+  }
+  else
+  {
+    std::cout << "There are no nodes to the right of " << value << ".\n";
   }
 
   // Children

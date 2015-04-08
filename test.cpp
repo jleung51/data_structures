@@ -72,8 +72,10 @@ int main()
   root.PrintTree();
   std::cout << "\n";
 
-  std::cout << "A visualization of the nodes:\n";
+  std::cout << "\n";
+  std::cout << "A visualization of the final structure:\n\n";
   root.PrintNodes();
+  std::cout << "\n";
 
   return 0;
 }
