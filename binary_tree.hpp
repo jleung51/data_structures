@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-03
+ * Date: 2015-04-07
  *
  * This program contains implementations of a binary tree, composed of nodes.
  *
@@ -27,7 +27,9 @@ class BinaryNode
     BinaryNode* left;
     BinaryNode* right;
 
-    void PrintTree_();  // Only for use by PrintTree()
+    void PrintTree_();  // Only for use by PrintTree().
+    void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
+    void PrintNodes_( unsigned int depth );  // Only for use by PrintNodes().
 
   public:
 
@@ -47,7 +49,8 @@ class BinaryNode
 
     // UTILITY METHODS:
     void PrintTree();  // Prints nodes from left to right
-    void PrintNodes();  // Prints a description of nodes and their hierarchy //TODO
+    void PrintNodes();  // Prints a description of nodes and their hierarchy.  //TODO
+                        // Describes how the binary tree should be drawn visually.
     int CountNodes();
     int NodeExists( direction d );  // Returns nonzero if the node's direction d is non-null.
 
@@ -147,6 +150,64 @@ void BinaryNode<T>::PrintTree()
   PrintTree_();
   std::cout << "]";
 
+  return;
+}
+
+// Only for use by PrintNodes_().
+// This function prints the indentation of a given node.
+template <class T>
+void BinaryNode<T>::PrintNodes_Depth( unsigned int depth )
+{
+  unsigned int i;
+  for( i = 0; i < depth; i++ )
+  {
+    std::cout << "  ";
+  }
+  return;
+}
+
+// Only for use by PrintNodes().
+// This method recursively prints each node and its children in a binary tree.
+// 'depth' must be initially called as 0.
+template <class T>
+void BinaryNode<T>::PrintNodes_( unsigned int depth )
+{
+  PrintNodes_Depth( depth );
+  std::cout << "Node: " << value << "\n";
+
+  // Left/right pointers:
+  if( left != NULL )
+  {
+    PrintNodes_Depth( depth );
+    std::cout << "Left of " << value << ":  " << left->value << "\n";
+  }
+  if( right != NULL )
+  {
+    PrintNodes_Depth( depth );
+    std::cout << "Right of " << value << ": " << right->value << "\n";
+  }
+
+  // Children
+  if( left != NULL )
+  {
+    std::cout << "\n";
+    left->PrintNodes_( depth+1 );
+  }
+  if( right != NULL )
+  {
+    std::cout << "\n";
+    right->PrintNodes_( depth+1 );
+  }
+
+  return;
+}
+
+// This wrapper method prints a visualization of each node and its children in a binary tree.
+// The method is designed so the user can generate the binary tree on paper from the description.
+template <class T>
+void BinaryNode<T>::PrintNodes()
+{
+  PrintNodes_( 0 );
   return;
 }
 
