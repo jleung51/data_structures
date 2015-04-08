@@ -26,6 +26,7 @@ class BinaryNode
     T value;
     BinaryNode* left;
     BinaryNode* right;
+    BinaryNode* parent;
 
     void PrintTree_();  // Only for use by PrintTree().
     void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
@@ -36,9 +37,10 @@ class BinaryNode
     // Constructor
     BinaryNode( T new_value )
     {
-      value = new_value;
-      left = NULL;
-      right = NULL;
+      value  = new_value;
+      left   = NULL;
+      right  = NULL;
+      parent = NULL;
     }
 
     // ESSENTIAL METHODS:
@@ -128,14 +130,14 @@ void BinaryNode<T>::PrintTree_()
 {
   if( left != NULL )
   {
-    (*left).PrintTree_();
+    left->PrintTree_();
   }
 
   std::cout << value << " ";
 
   if( right != NULL )
   {
-    (*right).PrintTree_();
+    right->PrintTree_();
   }
 
   return;
