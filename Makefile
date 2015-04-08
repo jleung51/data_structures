@@ -1,5 +1,5 @@
 # Source files
-SOURCES  = test.cpp
+SOURCES  = test.cpp merge_sort/merge_sort.c
 
 # Header files
 HSOURCES = binary_tree.hpp

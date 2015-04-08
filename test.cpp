@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-03
+ * Date: 2015-04-07
  *
  * This program tests implementations of the binary tree in binary_node.cpp.
  *
@@ -11,6 +11,7 @@
 #include <assert.h>
 
 #include "binary_tree.hpp"
+//#include "merge_sort/merge_sort.h"
 
 int main()
 {

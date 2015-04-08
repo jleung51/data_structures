@@ -14,6 +14,11 @@
 #include <assert.h>
 #include <stdlib.h>
 
+extern "C"
+{
+  #include "merge_sort/merge_sort.h"
+}
+
 enum direction
 {
   LEFT,
@@ -51,6 +56,7 @@ class BinaryNode
     // Called by the root of the binary tree unless otherwise specified.
     void ToArray( T* array );  // Returns the elements of the binary tree in the given array.
     void Sort(); //TODO
+                 // Called by the root.
     BinaryNode* Search( T target );  // Returns the pointer of the target, or NULL if not found.
     void InsertSorted( BinaryNode* node );
     void RemoveSorted( T num );  // Nothing happens if the value is not found or the root is the
@@ -266,17 +272,36 @@ void BinaryNode<T>::ToArray( T* array )
 }
 
 //TODO
-// This function sorts the elements of a binary tree from least to greatest, and optimizes
-// the positioning of the elements in the tree.
+// This method sorts the elements of a binary tree from least to greatest, and places the
+// elements back into the tree under the original root.
+// Called by the root.
 template <class T>
 void BinaryNode<T>::Sort()
 {
   int num = CountNodes();
   T array[num];
-
   ToArray( array );
 
-  // Add mergesort with template
+   // Removing the root from the array
+  for( int i = 0; i < num; i++ )
+  {
+    if( array[i] == value )
+    {
+      array[i] = array[num-1];
+      num--;
+      break;
+    }
+  }
+
+  merge_sort( array, num );
+
+  left->RemoveNode();
+  right->RemoveNode();
+
+  for( int i = 0; i < num; i++ )
+  {
+    InsertSorted( array[i] );
+  }
 
   return;
 }
