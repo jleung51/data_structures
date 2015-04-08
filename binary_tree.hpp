@@ -59,7 +59,7 @@ class BinaryNode
     // SORTED BINARY TREE (numerical) METHODS:
     // Called by the root of the binary tree unless otherwise specified.
     void Sort(); //TODO
-    BinaryNode* Search( T target );  // Returns the pointer of the target, or NULL if not found.
+    BinaryNode* Search( const T TARGET );  // Returns pointer of the target, or NULL if not found.
     void InsertSorted( BinaryNode* node );
     void RemoveSorted( T num );  // All nodes below are removed as well.
                                  // Nothing happens if the value is not found or the root is the
@@ -111,10 +111,12 @@ void BinaryNode<T>::RemoveNode()
   if( parent->left == this )
   {
     parent->left = NULL;
+    parent = NULL;
   }
   else if( parent->right == this )
   {
     parent->right = NULL;
+    parent = NULL;
   }
 
   return;
@@ -125,7 +127,7 @@ void BinaryNode<T>::RemoveNode()
 // UTILITY METHODS:
 
 // Only for use by PrintTree().
-// This method recursively prints the elements of a binary tree tree in order from left to right.
+// This method recursively prints the elements of a binary tree in order from left to right.
 template <class T>
 void BinaryNode<T>::PrintTree_()
 {
@@ -278,21 +280,21 @@ int BinaryNode<T>::NodeExists( direction d )
 // is not found.
 // Called by the root.
 template <class T>
-BinaryNode<T>* BinaryNode<T>::Search( T target )
+BinaryNode<T>* BinaryNode<T>::Search( const T TARGET )
 {
   BinaryNode* found = NULL;
 
-  if( value == target )
+  if( value == TARGET )
   {
     found = this;
   }
-  else if( value < target && left != NULL )
+  else if( TARGET < value && left != NULL )
   {
-    found = (*left).Search( target );
+    found = (*left).Search( TARGET );
   }
-  else if( value > target && right != NULL )
+  else if( TARGET > value && right != NULL )
   {
-    found = (*right).Search( target );
+    found = (*right).Search( TARGET );
   }
 
   return found;
@@ -348,14 +350,9 @@ void BinaryNode<T>::RemoveSorted( T num )
 {
   BinaryNode* node_remove = Search( num );
 
-  if( node_remove == NULL )
-  {
-    std::cout << "Oh no, " << num << " could not be found.\n";
-  }
+
   if( node_remove != NULL )
   {
-    std::cout << "Removing " << num << ".\n";
-
     // If the node is its parent's left child
     if( node_remove->parent->left == node_remove )
     {

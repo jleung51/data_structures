@@ -66,16 +66,6 @@ int main()
   std::cout << "\n";
 
 
-  std::cout << "\n";
-  if( root.Search(3) == NULL )
-  {
-    std::cout << "3 was not found!\n";
-  }
-  if( root.Search(7) == NULL )
-  {
-    std::cout << "7 was not found!\n";
-  }
-/*
   root.RemoveSorted( 3 );
   root.RemoveSorted( 7 );
   std::cout << "Test 9: [ 0 5 8 9 ] = ";
@@ -86,6 +76,6 @@ int main()
   std::cout << "A visualization of the final structure:\n\n";
   root.PrintNodes();
   std::cout << "\n";
-*/
+
   return 0;
 }
