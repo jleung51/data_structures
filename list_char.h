@@ -62,6 +62,8 @@ int list_char_compare( list_char* list1, list_char* list2 );  // Returns 1 if th
 list_char* list_char_duplicate( list_char* list );
 void list_char_slice( list_char* list, const unsigned int BEGIN, const unsigned int END );
     // BEGIN and END are inclusive
+void list_char_to_array( list_char* list, char* array );
+void list_char_sort( list_char* list );
 
 // PRIVATE FUNCTIONS
 

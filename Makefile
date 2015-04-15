@@ -1,8 +1,8 @@
 # Source files
-SOURCES = list_char.c test.c
+SOURCES = merge_sort/merge_sort.c list_char.c test.c
 
 # Header files
-HSOURCES = list_char.h test.h
+HSOURCES = merge_sort/merge_sort.h list_char.h test.h
 
 # Compiler options
 CFLAGS = -std=c99 -g -lm -Wall

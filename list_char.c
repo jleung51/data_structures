@@ -13,6 +13,7 @@
 #include <stdlib.h>
 
 #include "list_char.h"
+#include "merge_sort/merge_sort.h"
 
 
 
@@ -420,6 +421,64 @@ void list_char_slice( list_char* list, const unsigned int BEGIN, const unsigned 
   }
 
   list->tail->next = NULL;
+
+  return;
+}
+
+// This function returns all the elements in a linked list into an array.
+void list_char_to_array( list_char* list, char* array )
+{
+  int i = 0;
+  element_char* el;
+  for( el = list->head; el != NULL; el = el->next )
+  {
+    array[i] = el->value;
+    i++;
+  }
+
+  return;
+}
+
+// This function sorts the elements in a linked list using merge_sort.
+void list_char_sort( list_char* list )
+{
+  if( list == NULL )
+  {
+    printf( "Error: list_char_sort was given a null pointer.\n" );
+    exit( 1 );
+  }
+  else if( list->head == NULL )
+  {
+    return;
+  }
+
+  int len = list_char_len( list );
+  char array_char[len];
+  list_char_to_array( list, array_char );
+
+  // Converting from char to int array
+  int array_int[len];
+  int i;
+  for( i = 0; i < len; i++ )
+  {
+    array_int[i] = array_char[i];
+  }
+
+  merge_sort( array_int, len );
+
+  // Converting from int to char array
+  for( i = 0; i < len; i++ )
+  {
+    array_char[i] = array_int[i];
+  }
+
+  i = 0;
+  element_char* el;
+  for( el = list->head; el != NULL; el = el->next )
+  {
+    el->value = array_char[i];
+    i++;
+  }
 
   return;
 }

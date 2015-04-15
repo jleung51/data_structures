@@ -178,6 +178,12 @@ int main()
   printf( "1 0\n" );
   printf( "%d %d\n\n", i, j );
 
+  printf( "Test 19:\n" );
+  printf( "{ a b b c c d d e e f }\n" );
+  list_char_sort( list );
+  list_char_print( list );
+  printf( "\n" );
+
   list_char_destroy( list  );
   list_char_destroy( list2 );
 
