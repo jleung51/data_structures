@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-07
+ * Date: 2015-04-14
  *
  * This program contains implementations of a binary tree, composed of nodes.
  *
@@ -136,7 +136,7 @@ void BinaryNode<T>::PrintTree_()
     left->PrintTree_();
   }
 
-  std::cout << value << " ";
+  std::cout << value << " " ;
 
   if( right != NULL )
   {
@@ -151,9 +151,9 @@ void BinaryNode<T>::PrintTree_()
 template <class T>
 void BinaryNode<T>::PrintTree()
 {
-  std::cout << "[ ";
+  std::cout << "[ " ;
   PrintTree_();
-  std::cout << "]";
+  std::cout << "]" ;
 
   return;
 }
@@ -166,7 +166,7 @@ void BinaryNode<T>::PrintNodes_Depth( unsigned int depth )
   unsigned int i;
   for( i = 0; i < depth; i++ )
   {
-    std::cout << "  ";
+    std::cout << "  " ;
   }
   return;
 }
@@ -178,28 +178,28 @@ template <class T>
 void BinaryNode<T>::PrintNodes_( unsigned int depth )
 {
   PrintNodes_Depth( depth );
-  std::cout << "Node: " << value << "\n";
+  std::cout << "Node: " << value << "\n" ;
 
   // Left/right pointers:
 
   PrintNodes_Depth( depth );
   if( left != NULL )
   {
-    std::cout << "Left of " << value << ":  " << left->value << "\n";
+    std::cout << "Left of " << value << ":  " << left->value << "\n" ;
   }
   else
   {
-    std::cout << "There are no nodes to the left of " << value << ".\n";
+    std::cout << "There are no nodes to the left of " << value << ".\n" ;
   }
 
   PrintNodes_Depth( depth );
   if( right != NULL )
   {
-    std::cout << "Right of " << value << ": " << right->value << "\n";
+    std::cout << "Right of " << value << ": " << right->value << "\n" ;
   }
   else
   {
-    std::cout << "There are no nodes to the right of " << value << ".\n";
+    std::cout << "There are no nodes to the right of " << value << ".\n" ;
   }
 
   // Children
