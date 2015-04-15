@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-07
+ * Date: 2015-04-15
  *
  * This program contains the implementation of a recursive mergesort algorithm.
  *
@@ -72,6 +72,12 @@ static void merge_arrays( int* array1, int len1, int* array2, int len2 )
 // This function recursively sorts an array from least to greatest using the mergesort algorithm.
 void merge_sort( int* array, int len )
 {
+  if( array == NULL )
+  {
+    printf( "Error: merge_sort was given a null pointer.\n" );
+    exit( 1 );
+  }
+
   if( len <= 1 )
   {
     return;
