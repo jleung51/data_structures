@@ -21,6 +21,18 @@
 
 
 
+// STATIC (PRIVATE) FUNCTIONS
+
+// Only for use by list_char_destroy().
+// Parameter 'el' is the first element of a linked list.
+static void list_char_destroy_elements( element_char* el );
+
+// Only for use by list_char_remove().
+// The tail cannot be removed with this function.
+static void list_char_element_remove( list_char* list, element_char* el );
+
+
+
 // CREATION/DESTRUCTION OF AN ELEMENT/LIST
 
 // This function creates a single, empty character element for a linked list of characters.
@@ -57,7 +69,7 @@ list_char* list_char_create()
 // Only for use by list_char_destroy().
 // This recursive function deallocates the memory allocated for each element in a linked list of
 // characters, given the first element.
-void list_char_destroy_elements( element_char* el )
+static void list_char_destroy_elements( element_char* el )
 {
   if( el != NULL )
   {
@@ -293,7 +305,7 @@ void list_char_insert( list_char* list, const int INDEX, char c )
 // This function removes a single element from a linked list of characters, given a pointer to
 // the element.
 // The tail cannot be removed with this function.
-void list_char_element_remove( list_char* list, element_char* el  )
+static void list_char_element_remove( list_char* list, element_char* el  )
 {
   if( el->next == NULL )
   {

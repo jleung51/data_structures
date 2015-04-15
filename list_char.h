@@ -65,15 +65,4 @@ void list_char_slice( list_char* list, const unsigned int BEGIN, const unsigned 
 void list_char_to_array( list_char* list, char* array );
 void list_char_sort( list_char* list );
 
-// PRIVATE FUNCTIONS
-
-// Only for use by list_char_destroy().
-// Parameter 'el' is the first element of a linked list.
-void list_char_destroy_elements( element_char* el );
-
-// Only for use by list_char_remove().
-// The tail cannot be removed with this function.
-void list_char_element_remove( list_char* list, element_char* el );
-
-
 #endif
