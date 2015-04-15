@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-03-19
+ * Date: 2015-04-15
  *
  * This program contains functions implementing a linked list of characters.
  *
@@ -40,17 +40,19 @@ list_char* list_char_create()
   return list;
 }
 
+// Only for use by list_char_destroy().
 // This recursive function deallocates the memory allocated for each element in a linked list of
 // characters, given the first element.
-// The list cannot be empty.
-// Only for use by list_char_destroy().
 void list_char_destroy_elements( element_char* el )
 {
-  if( el->next != NULL )
+  if( el != NULL )
   {
-    list_char_destroy_elements( el->next );
+    if( el->next != NULL )
+    {
+      list_char_destroy_elements( el->next );
+    }
+    free( el );
   }
-  free( el );
   return;
 }
 
@@ -236,10 +238,10 @@ void list_char_insert( list_char* list, const int INDEX, char c )
   return;
 }
 
+// Only for use by list_char_remove().
 // This function removes a single element from a linked list of characters, given a pointer to
 // the element.
 // The tail cannot be removed with this function.
-// Only for use by list_char_remove().
 void list_char_element_remove( list_char* list, element_char* el  )
 {
   assert( el->next != NULL );
