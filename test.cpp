@@ -11,7 +11,11 @@
 #include <assert.h>
 
 #include "binary_tree.hpp"
-//#include "merge_sort/merge_sort.h"
+
+extern "C"
+{
+  #include "merge_sort/merge_sort.h"
+}
 
 int main()
 {

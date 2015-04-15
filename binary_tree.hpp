@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-06
+ * Date: 2015-04-15
  *
  * This program contains implementations of a binary tree, composed of nodes.
  *
@@ -13,11 +13,6 @@
 #include <iostream>
 #include <assert.h>
 #include <stdlib.h>
-
-extern "C"
-{
-  #include "merge_sort/merge_sort.h"
-}
 
 enum direction
 {
@@ -35,6 +30,7 @@ class BinaryNode
 
     void PrintTreeElements();  // Only for use by PrintTree()
     void ElementsToArray( T* array, int* elements_copied );  // Only for use by ToArray().
+    void InsertSortedOptimized( T* array, int len );  // Only for use by Sort().
 
   public:
 
@@ -55,8 +51,6 @@ class BinaryNode
     // SORTED BINARY TREE (numerical) METHODS:
     // Called by the root of the binary tree unless otherwise specified.
     void ToArray( T* array );  // Returns the elements of the binary tree in the given array.
-    void Sort(); //TODO
-                 // Called by the root.
     BinaryNode* Search( T target );  // Returns the pointer of the target, or NULL if not found.
     void InsertSorted( BinaryNode* node );
     void RemoveSorted( T num );  // Nothing happens if the value is not found or the root is the
@@ -261,47 +255,12 @@ void BinaryNode<T>::ToArray( T* array )
 {
   if( array == NULL )
   {
-    std::cout << "Error: ToArray() received an invalid pointer for an array.\n";
+    std::cout << "Error: ToArray() received an invalid pointer for an array.\n" ;
     exit( 1 );
   }
 
   int elements_copied = 0;
   ElementsToArray( array, &elements_copied );
-
-  return;
-}
-
-//TODO
-// This method sorts the elements of a binary tree from least to greatest, and places the
-// elements back into the tree under the original root.
-// Called by the root.
-template <class T>
-void BinaryNode<T>::Sort()
-{
-  int num = CountNodes();
-  T array[num];
-  ToArray( array );
-
-   // Removing the root from the array
-  for( int i = 0; i < num; i++ )
-  {
-    if( array[i] == value )
-    {
-      array[i] = array[num-1];
-      num--;
-      break;
-    }
-  }
-
-  merge_sort( array, num );
-
-  left->RemoveNode();
-  right->RemoveNode();
-
-  for( int i = 0; i < num; i++ )
-  {
-    InsertSorted( array[i] );
-  }
 
   return;
 }
