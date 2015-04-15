@@ -267,7 +267,7 @@ void list_char_insert( list_char* list, const int INDEX, char c )
   if( INDEX < 0 || len < INDEX )
   {
     printf( "Error: list_char_insert() was given an index out of bounds - "\
-            "%d in an array of length %d.", INDEX, len );
+            "%d in an array of length %d.\n", INDEX, len );
     exit( 1 );
   }
 
@@ -343,7 +343,7 @@ void list_char_remove( list_char* list, const int INDEX )
   if( INDEX < 0 || len <= INDEX )
   {
     printf( "Error: list_char_remove() was given an index out of bounds - "\
-            "%d in an array of length %d.", INDEX, len );
+            "%d in an array of length %d.\n", INDEX, len );
     exit( 1 );
   }
 
