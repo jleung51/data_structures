@@ -5,6 +5,10 @@
  *
  * This program contains functions implementing a linked list of characters.
  *
+ * Error codes:
+ *   1 User error
+ *   2 Internal (code implementation) error
+ *
  */
 
 #include <assert.h>
@@ -24,7 +28,12 @@
 element_char* element_char_create()
 {
   element_char* el = malloc( sizeof(element_char) );
-  assert( el != NULL );
+  if( el == NULL )
+  {
+    printf( "Error: Memory allocation for element_char_create() failed.\n" );
+    exit( 1 );
+  }
+
   return el;
 }
 
@@ -33,7 +42,11 @@ element_char* element_char_create()
 list_char* list_char_create()
 {
   list_char* list = malloc( sizeof(list_char) );
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: Memory allocation for list_char_create() failed.\n" );
+    exit( 1 );
+  }
 
   list->head = NULL;
   list->tail = NULL;
@@ -57,10 +70,14 @@ void list_char_destroy_elements( element_char* el )
   return;
 }
 
-// This function deallocates the memory allocated for a linked list of characters, given the list.
+// This wrapper function deallocates the memory allocated for a linked list of characters, given the list.
 void list_char_destroy( list_char* list )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_destroy() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   if( list->head != NULL )
   {
@@ -77,11 +94,10 @@ void list_char_destroy( list_char* list )
 // This function prints the elements of a linked list of characters.
 void list_char_print( list_char* list )
 {
-  assert( list != NULL );
-
-  if( list->head == NULL )
+  if( list == NULL )
   {
-    return;
+    printf( "Error: list_char_print() was given a null pointer.\n" );
+    exit( 1 );
   }
 
   printf( "{ " );
@@ -98,7 +114,11 @@ void list_char_print( list_char* list )
 // This function returns the number of elements in a linked list of characters.
 int list_char_len( list_char* list )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_len() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   int len = 0;
   element_char* el;
@@ -114,7 +134,11 @@ int list_char_len( list_char* list )
 // characters, or -1 if the element is not found or the list is empty.
 int list_char_index( list_char* list, char c )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_index() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   int index = 0;
   element_char* el;
@@ -138,7 +162,11 @@ int list_char_index( list_char* list, char c )
 // to NULL.
 void list_char_initialize( list_char* list )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_initialize() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   int len = list_char_len( list );
 
@@ -148,8 +176,13 @@ void list_char_initialize( list_char* list )
     list_char_remove( list, 0 );
   }
 
-  assert( list->head == NULL );
-  assert( list->tail == NULL );
+  if( list->head != NULL || list->tail != NULL )
+  {
+    printf( "Internal error: list_char_remove() did not set both head and tail to null when "\
+            "called by list_char_initialize.\n"\
+            "Please contact original owner of the repository.\n" );
+    exit( 2 );
+  }
 
   return;
 }
@@ -157,7 +190,11 @@ void list_char_initialize( list_char* list )
 // This function adds a character to the tail of a linked list of characters.
 void list_char_append( list_char* list, char c )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_append() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   element_char* el = element_char_create();
 
@@ -182,7 +219,11 @@ void list_char_append( list_char* list, char c )
 // This function adds a character to the head of a linked list of characters.
 void list_char_prepend( list_char* list, char c )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_prepend() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   element_char* el = element_char_create();
   el->value = c;
@@ -204,10 +245,19 @@ void list_char_prepend( list_char* list, char c )
 // This function inserts an element in a given index of a linked list of characters.
 void list_char_insert( list_char* list, const int INDEX, char c )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_insert() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   int len = list_char_len( list );
-  assert( 0 <= INDEX && INDEX <= len );
+  if( INDEX < 0 || len < INDEX )
+  {
+    printf( "Error: list_char_insert() was given an index out of bounds - "\
+            "%d in an array of length %d.", INDEX, len );
+    exit( 1 );
+  }
 
   if( INDEX != len )
   {
@@ -245,7 +295,12 @@ void list_char_insert( list_char* list, const int INDEX, char c )
 // The tail cannot be removed with this function.
 void list_char_element_remove( list_char* list, element_char* el  )
 {
-  assert( el->next != NULL );
+  if( el->next == NULL )
+  {
+    printf( "Internal error: list_char_remove() gave list_char_element_remove() the "\
+            "tail element.\nPlease contact original owner of the repository.\n" );
+    exit( 2 );
+  }
 
   element_char* el_after = el->next;
 
@@ -261,12 +316,24 @@ void list_char_element_remove( list_char* list, element_char* el  )
 // given its index.
 void list_char_remove( list_char* list, const int INDEX )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_remove() was given a null pointer.\n" );
+    exit( 1 );
+  }
+
+  if( list->head == NULL )
+  {
+    return;
+  }
 
   int len = list_char_len( list );
-
-  assert( list->head != NULL );
-  assert( 0 <= INDEX && INDEX <= len );
+  if( INDEX < 0 || len <= INDEX )
+  {
+    printf( "Error: list_char_remove() was given an index out of bounds - "\
+            "%d in an array of length %d.", INDEX, len );
+    exit( 1 );
+  }
 
   int i = 0;
   element_char* el;
@@ -307,7 +374,11 @@ void list_char_remove( list_char* list, const int INDEX )
 // This function changes all alphabetical characters to uppercase in a linked list of characters.
 void list_char_upper( list_char* list )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_upper() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   element_char* el;
   for( el = list->head; el != NULL; el = el->next )
@@ -321,7 +392,11 @@ void list_char_upper( list_char* list )
 // This function changes all alphabetical characters to lowercase in a linked list of characters.
 void list_char_lower( list_char* list )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_lower() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   element_char* el;
   for( el = list->head; el != NULL; el = el->next )
@@ -336,7 +411,16 @@ void list_char_lower( list_char* list )
 // and 0 otherwise.
 int list_char_compare( list_char* list1, list_char* list2 )
 {
-  assert( list1 != NULL && list2 != NULL );
+  if( list1 == NULL )
+  {
+    printf( "Error: list_char_compare() was given a null pointer for its first parameter.\n" );
+    exit( 1 );
+  }
+  else if( list2 == NULL )
+  {
+    printf( "Error: list_char_compare() was given a null pointer for its second parameter.\n" );
+    exit( 1 );
+  }
 
   if( list_char_len(list1) != list_char_len(list2) )
   {
@@ -363,7 +447,11 @@ int list_char_compare( list_char* list1, list_char* list2 )
 // This function returns a pointer to a deep copy of the linked list of characters argument.
 list_char* list_char_duplicate( list_char* list )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_duplicate() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   list_char* list_copy = list_char_create();
 
@@ -383,12 +471,26 @@ list_char* list_char_duplicate( list_char* list )
 // end with the index end.
 void list_char_slice( list_char* list, const unsigned int BEGIN, const unsigned int END )
 {
-  assert( list != NULL );
+  if( list == NULL )
+  {
+    printf( "Error: list_char_slice() was given a null pointer.\n" );
+    exit( 1 );
+  }
 
   int len = list_char_len( list );
 
-  assert( BEGIN <= END );
-  assert( END <= len );
+  if( BEGIN > END )
+  {
+    printf( "Error: list_char_slice() was given a beginning value (%d) greater than its"\
+            " end value (%d).\n", BEGIN, END );
+    exit( 1 );
+  }
+  else if( END >= len )
+  {
+    printf( "Error: list_char_slice() was given an end value (%d) greater than its"\
+            " length (%d).\n", END, len );
+    exit( 1 );
+  }
 
   element_char* el = list->head;
   element_char* el_temp;
@@ -428,6 +530,17 @@ void list_char_slice( list_char* list, const unsigned int BEGIN, const unsigned 
 // This function returns all the elements in a linked list into an array.
 void list_char_to_array( list_char* list, char* array )
 {
+  if( list == NULL )
+  {
+    printf( "Error: list_char_to_array() was given a null pointer for its list.\n" );
+    exit( 1 );
+  }
+  if( array == NULL )
+  {
+    printf( "Error: list_char_to_array() was given a null pointer for its array.\n" );
+    exit( 1 );
+  }
+
   int i = 0;
   element_char* el;
   for( el = list->head; el != NULL; el = el->next )
@@ -444,7 +557,7 @@ void list_char_sort( list_char* list )
 {
   if( list == NULL )
   {
-    printf( "Error: list_char_sort was given a null pointer.\n" );
+    printf( "Error: list_char_sort() was given a null pointer.\n" );
     exit( 1 );
   }
   else if( list->head == NULL )

@@ -133,9 +133,9 @@ int main()
 
   printf( "Test 14:\n" );
   list_char_initialize( list );
-  printf( "(intentionally blank)\n" ); 
+  printf( "{ }\n" ); 
   list_char_print( list );
-  printf( "\n" );
+  printf( "\n\n" );
 
   printf( "Test 15:\n" );
   for( i = 0; i < 5; i++ )
@@ -158,9 +158,9 @@ int main()
 
   printf( "Test 17:\n" );
   list_char_initialize( list );
-  printf( "(intentionally blank)\n" ); 
+  printf( "{ }\n" );
   list_char_print( list );
-  printf( "\n" );
+  printf( "\n\n" );
 
   printf( "Test 18:\n" );
   list_char_initialize( list );
@@ -182,7 +182,7 @@ int main()
   printf( "{ a b b c c d d e e f }\n" );
   list_char_sort( list );
   list_char_print( list );
-  printf( "\n" );
+  printf( "\n\n" );
 
   list_char_destroy( list  );
   list_char_destroy( list2 );
