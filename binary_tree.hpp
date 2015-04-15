@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-14
+ * Date: 2015-04-15
  *
  * This program contains implementations of a binary tree, composed of nodes.
  *
@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <assert.h>
+#include <stdlib.h>
 
 enum direction
 {
@@ -28,20 +29,15 @@ class BinaryNode
     BinaryNode* right;
     BinaryNode* parent;
 
-    void PrintTree_();  // Only for use by PrintTree().
     void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
     void PrintNodes_( unsigned int depth );  // Only for use by PrintNodes().
+    void PrintTreeElements();  // Only for use by PrintTree()
+    void ElementsToArray( T* array, int* elements_copied );  // Only for use by ToArray().
 
   public:
 
-    // Constructor
-    BinaryNode( T initial_value )
-    {
-      value  = initial_value;
-      left   = NULL;
-      right  = NULL;
-      parent = NULL;
-    }
+    // CONSTRUCTOR:
+    BinaryNode( T new_value );
 
     // ESSENTIAL METHODS:
     void SetValue( T num );
@@ -58,13 +54,24 @@ class BinaryNode
 
     // SORTED BINARY TREE (numerical) METHODS:
     // Called by the root of the binary tree unless otherwise specified.
-    void Sort(); //TODO
-    BinaryNode* Search( const T TARGET );  // Returns pointer of the target, or NULL if not found.
+    void ToArray( T* array );  // Returns the elements of the binary tree in the given array.
+    BinaryNode* Search( T target );  // Returns the pointer of the target, or NULL if not found.
     void InsertSorted( BinaryNode* node );
     void RemoveSorted( T num );  // All nodes below are removed as well.
                                  // Nothing happens if the value is not found or the root is the
                                  // node to be removed.
 };
+
+
+
+// Constructor
+template <class T>
+BinaryNode<T>::BinaryNode( T new_value )
+{
+  value = new_value;
+  left = NULL;
+  right = NULL;
+}
 
 
 
@@ -91,13 +98,30 @@ void BinaryNode<T>::AssignNode( BinaryNode* new_node, direction d )
 {
   if( d == LEFT )
   {
-    assert( left == NULL );
-    left = new_node;
+    if( left != NULL )
+    {
+      std::cout << "There is already a node to the left of " << value << "; ";
+      std::cout << "you cannot assign another node there.\n";
+      exit( 1 );
+    }
+    else
+    {
+      left = new_node;
+    }
   }
+
   else if( d == RIGHT )
   {
-    assert( right == NULL );
-    right = new_node;
+    if( right != NULL )
+    {
+      std::cout << "There is already a node to the right of " << value << "; ";
+      std::cout << "you cannot assign another node there.\n";
+      exit( 1 );
+    }
+    else
+    {
+      right = new_node;
+    }
   }
   new_node->parent = this;
 
@@ -129,18 +153,18 @@ void BinaryNode<T>::RemoveNode()
 // Only for use by PrintTree().
 // This method recursively prints the elements of a binary tree in order from left to right.
 template <class T>
-void BinaryNode<T>::PrintTree_()
+void BinaryNode<T>::PrintTreeElements()
 {
   if( left != NULL )
   {
-    left->PrintTree_();
+    left->PrintTreeElements();
   }
 
   std::cout << value << " " ;
 
   if( right != NULL )
   {
-    right->PrintTree_();
+    right->PrintTreeElements();
   }
 
   return;
@@ -152,7 +176,7 @@ template <class T>
 void BinaryNode<T>::PrintTree()
 {
   std::cout << "[ " ;
-  PrintTree_();
+  PrintTreeElements();
   std::cout << "]" ;
 
   return;
@@ -273,8 +297,48 @@ int BinaryNode<T>::NodeExists( direction d )
 
 // SORTED BINARY TREE (numerical) METHODS:
 
-//TODO
-//void Sort()
+// Only for use by ToArray().
+// This function recursively places the elements in a binary tree into an array.
+// 'elements_copied' must be initialized to 0.
+template <class T>
+void BinaryNode<T>::ElementsToArray( T array[], int* elements_copied )
+{
+  if( left != NULL )
+  {
+    left->ElementsToArray( array, elements_copied );
+  }
+
+  #pragma GCC diagnostic push  // Ignores GCC warning that elements_copied is unused
+  #pragma GCC diagnostic ignored "-Wunused-value"
+
+  array[*elements_copied] = value;
+  (*elements_copied)++;
+
+  #pragma GCC diagnostic pop
+
+  if( right != NULL )
+  {
+    right->ElementsToArray( array, elements_copied );
+  }
+
+  return;
+}
+
+// This wrapper function places the elements of a binary tree (from left to right) into an array.
+template <class T>
+void BinaryNode<T>::ToArray( T* array )
+{
+  if( array == NULL )
+  {
+    std::cout << "Error: ToArray() received an invalid pointer for an array.\n" ;
+    exit( 1 );
+  }
+
+  int elements_copied = 0;
+  ElementsToArray( array, &elements_copied );
+
+  return;
+}
 
 // This method returns the address of the binary node containing the target, or NULL if the target
 // is not found.
@@ -305,6 +369,12 @@ BinaryNode<T>* BinaryNode<T>::Search( const T TARGET )
 template <class T>
 void BinaryNode<T>::InsertSorted( BinaryNode<T>* node )
 {
+  if( node == NULL )
+  {
+    std::cout << "Error: InsertSorted() was given an invalid pointer for a node.\n";
+    exit( 1 );
+  }
+
   BinaryNode* node_search = this;  // Future parent pointer of the new node
 
   // While the node has not yet been assigned

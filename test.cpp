@@ -12,6 +12,11 @@
 
 #include "binary_tree.hpp"
 
+extern "C"
+{
+  #include "merge_sort/merge_sort.h"
+}
+
 int main()
 {
   BinaryNode<int> root( 1 );
@@ -61,7 +66,7 @@ int main()
   root.InsertSorted( &node8 );
   root.InsertSorted( &node7 );
   root.InsertSorted( &node9 );
-  std::cout << "Test 8: These numbers should be in order: " ;
+  std::cout << "Test 8: These numbers should be in ascending order: ";
   root.PrintTree();
   std::cout << "\n" ;
 
@@ -71,6 +76,16 @@ int main()
   std::cout << "Test 9: [ 0 5 8 9 ] = " ;
   root.PrintTree();
   std::cout << "\n";
+
+  sum = root.CountNodes();
+  int root_elements[sum];
+  root.ToArray( root_elements );
+  std::cout << "Test 10: [ 0 5 8 9 ] = [ ";
+  for( int i = 0; i < sum; i++ )
+  {
+    std::cout << root_elements[i] << " ";
+  }
+  std::cout << "]\n";
 
   std::cout << "\n";
   std::cout << "A visualization of the final structure:\n\n" ;
