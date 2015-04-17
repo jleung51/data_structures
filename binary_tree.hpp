@@ -1,6 +1,6 @@
 /*
  *
- * Name: Jeffrey Leung
+ * Author: Jeffrey Leung
  * Date: 2015-04-15
  *
  * This program contains implementations of a binary tree, composed of nodes.
@@ -23,17 +23,6 @@ enum direction
 template <typename T>
 class BinaryNode
 {
-  private:
-    T value;
-    BinaryNode* left;
-    BinaryNode* right;
-    BinaryNode* parent;
-
-    void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
-    void PrintNodes_( unsigned int depth );  // Only for use by PrintNodes().
-    void PrintTreeElements();  // Only for use by PrintTree()
-    void ElementsToArray( T* array, int* elements_copied );  // Only for use by ToArray().
-
   public:
 
     // CONSTRUCTOR:
@@ -60,6 +49,17 @@ class BinaryNode
     void RemoveSorted( T num );  // All nodes below are removed as well.
                                  // Nothing happens if the value is not found or the root is the
                                  // node to be removed.
+
+  private:
+    T value;
+    BinaryNode* left;
+    BinaryNode* right;
+    BinaryNode* parent;
+
+    void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
+    void PrintNodes_( unsigned int depth );  // Only for use by PrintNodes().
+    void PrintTreeElements();  // Only for use by PrintTree()
+    void ElementsToArray( T* array, int* elements_copied );  // Only for use by ToArray().
 };
 
 

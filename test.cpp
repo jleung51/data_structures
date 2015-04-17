@@ -1,6 +1,6 @@
 /*
  *
- * Name: Jeffrey Leung
+ * Author: Jeffrey Leung
  * Date: 2015-04-14
  *
  * This program tests implementations of the binary tree in binary_node.cpp.
