@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Date: 2015-04-15
+ * Date: 2015-04-21
  *
  * This program contains implementations of a binary tree, composed of nodes.
  *
@@ -39,6 +39,8 @@ class BinaryNode
     void PrintNodes();  // Prints a description of nodes and their hierarchy.
                         // Describes how the binary tree should be drawn visually.
     int CountNodes();  // Includes itself and all child nodes.
+    int Height();  // Length of longest branch from the root.
+                   // A binary tree consisting of one node has a height of 0.
     int NodeExists( direction d );  // Returns nonzero if the node's direction d is non-null.
 
     // SORTED BINARY TREE (numerical) METHODS:
@@ -266,6 +268,49 @@ int BinaryNode<T>::CountNodes()
   }
 
   return sum;
+}
+
+// This method returns the height (i.e. the longest branch from the root) of the binary tree.
+// A binary tree consisting of one node has a height of 0.
+// Called by the root.
+template <class T>
+int BinaryNode<T>::Height()
+{
+  if( left == NULL && right == NULL )
+  {
+    return 0;
+  }
+
+  int left_height;
+  int right_height;
+
+  if( left != NULL )
+  {
+    left_height = left->Height();
+  }
+  else
+  {
+    left_height = 0;
+  }
+
+  if( right != NULL )
+  {
+    right_height = right->Height();
+  }
+  else
+  {
+    right_height = 0;
+  }
+
+  if( right > left )
+  {
+    return right_height + 1;
+  }
+  else
+  {
+    return left_height + 1;
+  }
+
 }
 
 // This method returns nonzero if the node in the given direction exists, and 0 otherwise.
