@@ -6,8 +6,8 @@
  * This program contains functions implementing a linked list of characters.
  *
  * Error codes:
- *   1 User error
- *   2 Internal (code implementation) error
+ *   1: User error
+ *   2: Internal (code implementation) error
  *
  */
 
@@ -22,6 +22,9 @@
 
 
 // STATIC (PRIVATE) FUNCTIONS
+
+// User is responsible for freeing the allocated memory.
+static element_char* element_char_create();
 
 // Only for use by list_char_destroy().
 // Parameter 'el' is the first element of a linked list.
@@ -45,6 +48,9 @@ element_char* element_char_create()
     printf( "Error: Memory allocation for element_char_create() failed.\n" );
     exit( 1 );
   }
+
+  el->value = 0;
+  el->next = NULL;
 
   return el;
 }
@@ -144,11 +150,11 @@ int list_char_len( list_char* list )
 
 // This function returns the index of the first appearance of a given element in a linked list of
 // characters, or -1 if the element is not found or the list is empty.
-int list_char_index( list_char* list, char c )
+int list_char_find( list_char* list, char c )
 {
   if( list == NULL )
   {
-    printf( "Error: list_char_index() was given a null pointer.\n" );
+    printf( "Error: list_char_find() was given a null pointer.\n" );
     exit( 1 );
   }
 
@@ -164,6 +170,32 @@ int list_char_index( list_char* list, char c )
   }
 
   return -1;
+}
+
+// This function returns the value of an element at a given index.
+char list_char_index( list_char* list, unsigned int index )
+{
+  if( list == NULL )
+  {
+    printf( "Error: list_char_index was given a null pointer.\n" );
+    exit( 1 );
+  }
+
+  int len = list_char_len( list );
+  if( index >= len )
+  {
+    printf( "Error: list_char_index was given an invalid index.\n" );
+    exit( 1 );
+  }
+
+  element_char* el = list->head;
+  int i;
+  for( i = 0; i < index; i++ )
+  {
+    el = el->next;
+  }
+
+  return el->value;
 }
 
 

@@ -1,7 +1,7 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-15
+ * Date: 2015-04-21
  *
  * This header file contains function prototypes for the implementation of a linked list
  * of characters.
@@ -34,17 +34,17 @@ typedef struct
 
 
 
-// CREATION/DESTRUCTION OF AN ELEMENT/LIST
-element_char* element_char_create();  // User is responsible for freeing the allocated memory.
+// CREATION/DESTRUCTION OF A LIST
 list_char* list_char_create();  // User is responsible for freeing the allocated memory.
 void list_char_destroy( list_char* list );
 
 // LIST PROPERTIES
 void list_char_print( list_char* list );
 int list_char_len( list_char* list );
-int list_char_index( list_char* list, char c );  // Returns the index of the first appearance of
-                                                 // char c, or -1 if c is not found or the list
-                                                 // is empty.
+int list_char_find( list_char* list, char c );  // Returns the index of the first appearance of
+                                                // char c, or -1 if c is not found or the list
+                                                // is empty.
+char list_char_index( list_char* list, unsigned int index );  // Returns the value of the element at the gievn index.
 
 // BASIC OPERATIONS
 void list_char_initialize( list_char* list );  // Frees all elements and sets head and tail to NULL.
