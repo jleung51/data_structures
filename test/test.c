@@ -11,7 +11,6 @@
 
 #include "test.h"
 #include "../linked_list/list_char.h"
-#include "../stack_queue/stack_char.h"
 
 // This function prints a long spacer for separating sections.
 void spacer()
