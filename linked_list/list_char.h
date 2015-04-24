@@ -40,7 +40,7 @@ void list_char_destroy( list_char* list );
 
 // LIST PROPERTIES
 void list_char_print( list_char* list );
-int list_char_len( list_char* list );
+unsigned int list_char_len( list_char* list );
 int list_char_find( list_char* list, char c );  // Returns the index of the first appearance of
                                                 // char c, or -1 if c is not found or the list
                                                 // is empty.
@@ -63,6 +63,6 @@ list_char* list_char_duplicate( list_char* list );
 void list_char_slice( list_char* list, const unsigned int BEGIN, const unsigned int END );
     // BEGIN and END are inclusive
 void list_char_to_array( list_char* list, char* array );
-void list_char_sort( list_char* list );
+void list_char_sort( list_char* list );  // Least to greatest.
 
 #endif

@@ -1,11 +1,13 @@
 # Source files
 SOURCES = ../merge_sort/merge_sort.c \
-          ../linked-list/list_char.c \
+          ../linked_list/list_char.c \
+          ../stack_queue/stack_char.c \
           test.c
 
 # Header files
 HSOURCES = ../merge_sort/merge_sort.h \
-           ../linked-list/list_char.h \
+           ../linked_list/list_char.h \
+          ../stack_queue/stack_char.h \
            test.h
 
 # Compiler options

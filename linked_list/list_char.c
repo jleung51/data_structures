@@ -109,7 +109,7 @@ void list_char_destroy( list_char* list )
 
 // LIST PROPERTIES
 
-// This function prints the elements of a linked list of characters.
+// This function prints the elements of a linked list of characters in order.
 void list_char_print( list_char* list )
 {
   if( list == NULL )
@@ -130,7 +130,7 @@ void list_char_print( list_char* list )
 }
 
 // This function returns the number of elements in a linked list of characters.
-int list_char_len( list_char* list )
+unsigned int list_char_len( list_char* list )
 {
   if( list == NULL )
   {
