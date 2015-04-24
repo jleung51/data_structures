@@ -1,16 +1,18 @@
 # Linked list source files
 LL_SOURCES = ../merge_sort/merge_sort.c \
-            ../linked_list/list_char.c
+             ../linked_list/list_char.c
 
 # Linked list header files
 LL_HSOURCES = ../merge_sort/merge_sort.h \
-             ../linked_list/list_char.h
+              ../linked_list/list_char.h
 
 # Stack/queue source files
-STA_QUE_SOURCES = ../stack_queue/stack_char.c
+STA_QUE_SOURCES = ../stack_queue/stack_char.c \
+                  ../stack_queue/queue_char.c
 
 # Stack/queue header files
-STA_QUE_HSOURCES = ../stack_queue/stack_char.h
+STA_QUE_HSOURCES = ../stack_queue/stack_char.h \
+                   ../stack_queue/queue_char.h
 
 # Compiler options
 CFLAGS = -std=c99 -g -lm -Wall

@@ -20,7 +20,7 @@
 #include "stack_char.h"
 
 // Only to be used by stack_char_print().
-static void stack_char_print_( element_char* stack_char_element );
+static void stack_char_print_( element_char* stack_element );
 
 
 
@@ -33,23 +33,9 @@ list_char* stack_char_create()
 }
 
 // This function deallocates the memory associated with a stack of characters.
-void stack_char_destroy( list_char* stack_char )
+void stack_char_destroy( list_char* stack )
 {
-  list_char_destroy( stack_char );
-  return;
-}
-
-// Only to be used by stack_char_print().
-// This function recursively prints the elements of a stack in order (backwards in
-// linked list order).
-static void stack_char_print_( element_char* stack_char_element )
-{
-  if( stack_char_element != NULL )
-  {
-    stack_char_print_( stack_char_element->next );
-    printf( "%c ", stack_char_element->value );
-  }
-
+  list_char_destroy( stack );
   return;
 }
 
@@ -57,13 +43,27 @@ static void stack_char_print_( element_char* stack_char_element )
 
 // STACK PROPERTIES
 
+// Only to be used by stack_char_print().
+// This function recursively prints the elements of a stack in order (backwards in
+// linked list order).
+static void stack_char_print_( element_char* stack_element )
+{
+  if( stack_element != NULL )
+  {
+    stack_char_print_( stack_element->next );
+    printf( "%c ", stack_element->value );
+  }
+
+  return;
+}
+
 // This wrapper function recursively prints the elements of a stack in order (backwards in
 // linked list order).
-void stack_char_print( list_char* stack_char )
+void stack_char_print( list_char* stack )
 {
-  printf( "|- " );
-  stack_char_print_( stack_char->head );
-  printf( "->" );
+  printf( "| " );
+  stack_char_print_( stack->head );
+  printf( ">" );
 
   return;
 }
@@ -79,7 +79,7 @@ char stack_char_peek( list_char* stack )
 {
   if( stack->head == NULL )
   {
-    printf( "Error: stack_char_peek was given an empty stack.\n" );
+    printf( "Error: stack_char_peek() was given an empty stack.\n" );
     exit( 1 );
   }
 
@@ -104,8 +104,8 @@ void stack_char_push( list_char* stack, char c )
   return;
 }
 
-// This function removes (from the head) an element from the stack and returns its value.
-char stack_char_pop( list_char* stack )
+// This function removes (from the head) an element from the top of the stack.
+void stack_char_pop( list_char* stack )
 {
   if( stack_char_len( stack ) == 0 )
   {
@@ -113,7 +113,6 @@ char stack_char_pop( list_char* stack )
     exit( 1 );
   }
 
-  char c = stack_char_peek( stack );
   list_char_remove( stack, 0 );
-  return c;
+  return;
 }
