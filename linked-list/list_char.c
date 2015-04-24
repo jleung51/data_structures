@@ -17,7 +17,7 @@
 #include <stdlib.h>
 
 #include "list_char.h"
-#include "merge_sort/merge_sort.h"
+#include "../merge_sort/merge_sort.h"
 
 
 

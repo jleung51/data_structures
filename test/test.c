@@ -1,16 +1,16 @@
 /*
  *
  * Name: Jeffrey Leung
- * Date: 2015-04-21
+ * Date: 2015-04-23
  *
- * This program contains tests for the linked list functions in list.c.
+ * This program contains tests for the linked list functions in list_char.c.
  *
  */
 
 #include <stdio.h>
 
 #include "test.h"
-#include "../list_char.h"
+#include "../linked-list/list_char.h"
 
 // This function prints a long spacer for separating sections.
 void spacer()
