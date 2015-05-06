@@ -12,11 +12,6 @@
 
 #include "../binary_tree.hpp"
 
-extern "C"
-{
-  #include "../merge_sort/merge_sort.h"
-}
-
 int main()
 {
   BinaryNode<int> root( 1 );

@@ -1,10 +1,8 @@
 # Source files
-SOURCES  = ../merge_sort/merge_sort.c \
-           ../binary_tree.hpp \
-           test.cpp
+SOURCES  = test.cpp 
 
 # Header files
-HSOURCES = ../merge_sort/merge_sort.h
+HSOURCES = ../binary_tree.hpp
 
 # Compiler options
 CFLAGS = -std=c++11 -g -Wall
