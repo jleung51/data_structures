@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Date: 2015-04-21
+ * Date: 2015-05-05
  *
  * This program tests implementations of the binary tree in binary_node.cpp.
  *
@@ -25,20 +25,20 @@ int main()
 
   node1.SetValue( 2 );
 
-  root.AssignNode( &node1, LEFT  );
-  root.AssignNode( &node2, RIGHT );
+  root.AssignNode( &node1, direction::kLeft  );
+  root.AssignNode( &node2, direction::kRight );
 
   std::cout << "Test 1: 1 = " << root.GetValue() << "\n" ;
   std::cout << "Test 2: " << node1.GetValue() << " = " << node2.GetValue() << "\n" ;
 
-  int node_found = root.NodeExists( RIGHT );
+  int node_found = root.NodeExists( direction::kRight );
   std::cout << "Test 3: 1 = " << node_found << "\n" ;
 
   node2.RemoveNode();
-  node_found = root.NodeExists( RIGHT );
+  node_found = root.NodeExists( direction::kRight );
   std::cout << "Test 4: 0 = " << node_found << "\n" ;
 
-  root.AssignNode( &node2, RIGHT );
+  root.AssignNode( &node2, direction::kRight );
   std::cout << "Test 5: " ;
   root.PrintTree();
   std::cout << " = [ 2 1 2 ]\n" ;
@@ -93,7 +93,6 @@ int main()
   std::cout << "A visualization of the final structure:\n\n" ;
   root.PrintNodes();
   std::cout << "\n" ;
-
 
   return 0;
 }

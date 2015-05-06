@@ -1,23 +1,23 @@
 /*
  *
  * Author: Jeffrey Leung
- * Date: 2015-04-21
+ * Last edited: 2015-05-05
  *
- * This program contains implementations of a binary tree, composed of nodes.
+ * This program contains the implementation of a binary tree, composed of nodes of any given type.
  *
  */
 
-#ifndef BINARY_NODE_HPP
-#define BINARY_NODE_HPP
+#ifndef BINARY_TREE_HPP
+#define BINARY_TREE_HPP
 
 #include <iostream>
 #include <assert.h>
 #include <stdlib.h>
 
-enum direction
+enum class direction
 {
-  LEFT,
-  RIGHT
+  kLeft,
+  kRight,
 };
 
 template <typename T>
@@ -75,8 +75,6 @@ BinaryNode<T>::BinaryNode( T new_value )
   right = NULL;
 }
 
-
-
 // ESSENTIAL METHODS:
 
 // This method assigns a new value to the binary node.
@@ -98,7 +96,7 @@ T BinaryNode<T>::GetValue()
 template <class T>
 void BinaryNode<T>::AssignNode( BinaryNode* new_node, direction d )
 {
-  if( d == LEFT )
+  if( d == direction::kLeft )
   {
     if( left != NULL )
     {
@@ -112,7 +110,7 @@ void BinaryNode<T>::AssignNode( BinaryNode* new_node, direction d )
     }
   }
 
-  else if( d == RIGHT )
+  else if( d == direction::kRight )
   {
     if( right != NULL )
     {
@@ -319,7 +317,7 @@ int BinaryNode<T>::NodeExists( direction d )
 {
   int node_found = 0;
 
-  if( d == LEFT )
+  if( d == direction::kLeft )
   {
     if( left != NULL )
     {
@@ -327,7 +325,7 @@ int BinaryNode<T>::NodeExists( direction d )
     }
   }
 
-  else if( d == RIGHT )
+  else if( d == direction::kRight )
   {
     if( right != NULL )
     {
@@ -389,21 +387,21 @@ void BinaryNode<T>::ToArray( T* array )
 // is not found.
 // Called by the root.
 template <class T>
-BinaryNode<T>* BinaryNode<T>::Search( const T TARGET )
+BinaryNode<T>* BinaryNode<T>::Search( const T kTarget )
 {
   BinaryNode* found = NULL;
 
-  if( value == TARGET )
+  if( value == kTarget )
   {
     found = this;
   }
-  else if( TARGET < value && left != NULL )
+  else if( kTarget < value && left != NULL )
   {
-    found = left->Search( TARGET );
+    found = left->Search( kTarget );
   }
-  else if( TARGET > value && right != NULL )
+  else if( kTarget > value && right != NULL )
   {
-    found = right->Search( TARGET );
+    found = right->Search( kTarget );
   }
 
   return found;
