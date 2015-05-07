@@ -20,7 +20,7 @@ enum class direction
   kRight,
 };
 
-template <typename T>
+template <class T>
 class BinaryNode
 {
   public:
