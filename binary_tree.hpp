@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-05
+ * Last edited: 2015-05-13
  *
  * This program contains the implementation of a binary tree, composed of nodes of any given type.
  *
@@ -46,7 +46,7 @@ class BinaryNode
     // SORTED BINARY TREE (numerical) METHODS:
     // Called by the root of the binary tree unless otherwise specified.
     void ToArray( T* array );  // Returns the elements of the binary tree in the given array.
-    BinaryNode* Search( T target );  // Returns the pointer of the target, or NULL if not found.
+    BinaryNode* Search( T target );  // Returns the pointer of the target, or nullptr if not found.
     void InsertSorted( BinaryNode* node );
     void RemoveSorted( T num );  // All nodes below are removed as well.
                                  // Nothing happens if the value is not found or the root is the
@@ -60,7 +60,7 @@ class BinaryNode
 
     void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
     void PrintNodes_( unsigned int depth );  // Only for use by PrintNodes().
-    void PrintTreeElements();  // Only for use by PrintTree()
+    void PrintTreeElements();  // Only for use by PrintTree().
     void ElementsToArray( T* array, int* elements_copied );  // Only for use by ToArray().
 };
 
@@ -71,8 +71,8 @@ template <class T>
 BinaryNode<T>::BinaryNode( T new_value )
 {
   value = new_value;
-  left = NULL;
-  right = NULL;
+  left = nullptr;
+  right = nullptr;
 }
 
 // ESSENTIAL METHODS:
@@ -98,7 +98,7 @@ void BinaryNode<T>::AssignNode( BinaryNode* new_node, direction d )
 {
   if( d == direction::kLeft )
   {
-    if( left != NULL )
+    if( left != nullptr )
     {
       std::cout << "There is already a node to the left of " << value << "; ";
       std::cout << "you cannot assign another node there.\n";
@@ -112,7 +112,7 @@ void BinaryNode<T>::AssignNode( BinaryNode* new_node, direction d )
 
   else if( d == direction::kRight )
   {
-    if( right != NULL )
+    if( right != nullptr )
     {
       std::cout << "There is already a node to the right of " << value << "; ";
       std::cout << "you cannot assign another node there.\n";
@@ -134,13 +134,13 @@ void BinaryNode<T>::RemoveNode()
 {
   if( parent->left == this )
   {
-    parent->left = NULL;
-    parent = NULL;
+    parent->left = nullptr;
+    parent = nullptr;
   }
   else if( parent->right == this )
   {
-    parent->right = NULL;
-    parent = NULL;
+    parent->right = nullptr;
+    parent = nullptr;
   }
 
   return;
@@ -155,14 +155,14 @@ void BinaryNode<T>::RemoveNode()
 template <class T>
 void BinaryNode<T>::PrintTreeElements()
 {
-  if( left != NULL )
+  if( left != nullptr )
   {
     left->PrintTreeElements();
   }
 
   std::cout << value << " " ;
 
-  if( right != NULL )
+  if( right != nullptr )
   {
     right->PrintTreeElements();
   }
@@ -207,7 +207,7 @@ void BinaryNode<T>::PrintNodes_( unsigned int depth )
   // Left/right pointers:
 
   PrintNodes_Depth( depth );
-  if( left != NULL )
+  if( left != nullptr )
   {
     std::cout << "Left of " << value << ":  " << left->value << "\n" ;
   }
@@ -217,7 +217,7 @@ void BinaryNode<T>::PrintNodes_( unsigned int depth )
   }
 
   PrintNodes_Depth( depth );
-  if( right != NULL )
+  if( right != nullptr )
   {
     std::cout << "Right of " << value << ": " << right->value << "\n" ;
   }
@@ -227,12 +227,12 @@ void BinaryNode<T>::PrintNodes_( unsigned int depth )
   }
 
   // Children
-  if( left != NULL )
+  if( left != nullptr )
   {
     std::cout << "\n";
     left->PrintNodes_( depth+1 );
   }
-  if( right != NULL )
+  if( right != nullptr )
   {
     std::cout << "\n";
     right->PrintNodes_( depth+1 );
@@ -256,11 +256,11 @@ int BinaryNode<T>::CountNodes()
 {
   int sum = 1;
 
-  if( left != NULL )
+  if( left != nullptr )
   {
     sum += left->CountNodes();
   }
-  if( right != NULL )
+  if( right != nullptr )
   {
     sum += right->CountNodes();
   }
@@ -274,7 +274,7 @@ int BinaryNode<T>::CountNodes()
 template <class T>
 int BinaryNode<T>::Height()
 {
-  if( left == NULL && right == NULL )
+  if( left == nullptr && right == nullptr )
   {
     return 0;
   }
@@ -282,7 +282,7 @@ int BinaryNode<T>::Height()
   int left_height;
   int right_height;
 
-  if( left != NULL )
+  if( left != nullptr )
   {
     left_height = left->Height();
   }
@@ -291,7 +291,7 @@ int BinaryNode<T>::Height()
     left_height = 0;
   }
 
-  if( right != NULL )
+  if( right != nullptr )
   {
     right_height = right->Height();
   }
@@ -319,7 +319,7 @@ int BinaryNode<T>::NodeExists( direction d )
 
   if( d == direction::kLeft )
   {
-    if( left != NULL )
+    if( left != nullptr )
     {
       node_found = -1;
     }
@@ -327,7 +327,7 @@ int BinaryNode<T>::NodeExists( direction d )
 
   else if( d == direction::kRight )
   {
-    if( right != NULL )
+    if( right != nullptr )
     {
       node_found = 1;
     }
@@ -346,7 +346,7 @@ int BinaryNode<T>::NodeExists( direction d )
 template <class T>
 void BinaryNode<T>::ElementsToArray( T array[], int* elements_copied )
 {
-  if( left != NULL )
+  if( left != nullptr )
   {
     left->ElementsToArray( array, elements_copied );
   }
@@ -359,7 +359,7 @@ void BinaryNode<T>::ElementsToArray( T array[], int* elements_copied )
 
   #pragma GCC diagnostic pop
 
-  if( right != NULL )
+  if( right != nullptr )
   {
     right->ElementsToArray( array, elements_copied );
   }
@@ -371,7 +371,7 @@ void BinaryNode<T>::ElementsToArray( T array[], int* elements_copied )
 template <class T>
 void BinaryNode<T>::ToArray( T* array )
 {
-  if( array == NULL )
+  if( array == nullptr )
   {
     std::cout << "Error: ToArray() received an invalid pointer for an array.\n" ;
     exit( 1 );
@@ -383,23 +383,23 @@ void BinaryNode<T>::ToArray( T* array )
   return;
 }
 
-// This method returns the address of the binary node containing the target, or NULL if the target
-// is not found.
+// This method returns the address of the binary node containing the target, or nullptr if the
+// target is not found.
 // Called by the root.
 template <class T>
 BinaryNode<T>* BinaryNode<T>::Search( const T kTarget )
 {
-  BinaryNode* found = NULL;
+  BinaryNode* found = nullptr;
 
   if( value == kTarget )
   {
     found = this;
   }
-  else if( kTarget < value && left != NULL )
+  else if( kTarget < value && left != nullptr )
   {
     found = left->Search( kTarget );
   }
-  else if( kTarget > value && right != NULL )
+  else if( kTarget > value && right != nullptr )
   {
     found = right->Search( kTarget );
   }
@@ -412,7 +412,7 @@ BinaryNode<T>* BinaryNode<T>::Search( const T kTarget )
 template <class T>
 void BinaryNode<T>::InsertSorted( BinaryNode<T>* node )
 {
-  if( node == NULL )
+  if( node == nullptr )
   {
     std::cout << "Error: InsertSorted() was given an invalid pointer for a node.\n";
     exit( 1 );
@@ -426,7 +426,7 @@ void BinaryNode<T>::InsertSorted( BinaryNode<T>* node )
     // Less than or equal to the current node
     if( node->value <= node_search->value )
     {
-      if( node_search->left == NULL )
+      if( node_search->left == nullptr )
       {
         node_search->left = node;
         node->parent = node_search;
@@ -440,7 +440,7 @@ void BinaryNode<T>::InsertSorted( BinaryNode<T>* node )
     // Greater than the current node
     else
     {
-      if( node_search->right == NULL )
+      if( node_search->right == nullptr )
       {
         node_search->right = node;
         node->parent = node_search;
@@ -463,19 +463,18 @@ void BinaryNode<T>::RemoveSorted( T num )
 {
   BinaryNode* node_remove = Search( num );
 
-
-  if( node_remove != NULL )
+  if( node_remove != nullptr )
   {
     // If the node is its parent's left child
     if( node_remove->parent->left == node_remove )
     {
-      node_remove->parent->left = NULL;
+      node_remove->parent->left = nullptr;
     }
 
     // If the node is its parent's right child
     else if( node_remove->parent->right == node_remove )
     {
-      node_remove->parent->right = NULL;
+      node_remove->parent->right = nullptr;
     }
   }
 
