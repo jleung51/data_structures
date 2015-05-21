@@ -167,5 +167,3 @@ void ExpandableArray<T>::Print()
       ExpandableArray* Copy( unsigned int start, unsigned int end );
         // Copies all elements from start to end-1 inclusive.
 */
-
-#endif
