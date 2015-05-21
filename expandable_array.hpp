@@ -7,8 +7,7 @@
  *
  */
 
-#ifndef EXPANDABLE_ARRAY_HPP
-#define EXPANDABLE_ARRAY_HPP
+#pragma once
 
 #include <cstring>
 #include <iostream>
