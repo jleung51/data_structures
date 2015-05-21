@@ -1,14 +1,13 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-13
+ * Last edited: 2015-05-21
  *
  * This program contains the implementation of a binary tree, composed of nodes of any given type.
  *
  */
 
-#ifndef BINARY_TREE_HPP
-#define BINARY_TREE_HPP
+#pragma once
 
 #include <iostream>
 #include <assert.h>
@@ -480,5 +479,3 @@ void BinaryNode<T>::RemoveSorted( T num )
 
   return;
 }
-
-#endif
