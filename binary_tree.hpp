@@ -3,7 +3,7 @@
  * Author: Jeffrey Leung
  * Last edited: 2015-05-21
  *
- * This program contains the implementation of a binary tree, composed of nodes of any given type.
+ * This C++ program contains the implementation of a binary tree, composed of nodes of any given type.
  *
  */
 
