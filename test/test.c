@@ -1,25 +1,28 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-05
+ * Last edited: 2015-05-24
  *
- * This program contains a testing implementation of the expandable array class and methods.
+ * This C program contains a testing implementation of the functions in
+ * int_array.h.
  *
  */
 
-#include <iostream>
+#include <stdio.h>
 
-#include "../expandable_array.hpp"
+#include "../int_array.h"
 
 int main()
 {
-  ExpandableArray<int> array;
+  IntArray* array = IntArrayCreate();
 
   for( int i = 0; i < 50; i++ )
   {
-    array.Append( i );
+    IntArrayAppend( array, i );
   }
-  std::cout << "The array containing the numbers 0-49 is " ;
+
+/*
+  printf( "The array containing the numbers 0-49 is " );
   array.Print();
   std::cout << ".\n\n" ;
 
@@ -46,6 +49,8 @@ int main()
   std::cout << "The array containing the numbers 0 to -38 is " ;
   array.Print();
   std::cout << ".\n\n" ;
+*/
+  IntArrayDelete( array );
 
   return 0;
 }

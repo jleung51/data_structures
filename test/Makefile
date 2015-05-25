@@ -1,11 +1,11 @@
 # Source files
-SOURCES  = test.cpp
+SOURCES  = test.c
 
 # Header files
-HSOURCES = ../expandable_array.hpp
+HSOURCES = ../int_array.h
 
 # Compiler options
-CFLAGS = -std=c++11 -g -Wall
+CFLAGS = -std=c99 -g -lm -Wall
 
 #####
 ###
@@ -15,9 +15,15 @@ CFLAGS = -std=c++11 -g -Wall
 ###
 #####
 
+# $ 'make' or 'make help'
+help:
+	# INSTRUCTIONS:
+	#   To test int_array.h, run: make output
+	#   To remove compiled output files, run: make clean
+
 # $ make
 output: $(SOURCES) $(HSOURCES)
-	g++ $(CFLAGS) $(SOURCES) -o output
+	gcc $(CFLAGS) $(SOURCES) -o output
 	# To execute the program, run: $ ./output
 
 # $ make clean

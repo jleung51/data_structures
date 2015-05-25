@@ -1,2 +1,2 @@
-# expandable_array
-C++ implementation of a templated, self-expanding array.
+# IntArray
+C implementation of a self-expanding array of integers.
