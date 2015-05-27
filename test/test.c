@@ -16,10 +16,26 @@ int main()
 {
   IntArray* array = IntArrayCreate();
 
+  IntArrayPrint( array );
+  printf( "\n" );
+
   for( int i = 0; i < 50; i++ )
   {
     IntArrayAppend( array, i );
   }
+
+  IntArrayPrint( array );
+  printf( "\n" );
+
+  IntArrayRemoveLast( array );
+  IntArrayPrint( array );
+  printf( "\n" );
+
+  IntArrayRemove( array, 0 );
+  IntArrayPrint( array );
+  printf( "\n" );
+
+  printf( "First element in the array: %d\n", IntArrayGet( array, 0 ) );
 
 /*
   printf( "The array containing the numbers 0-49 is " );

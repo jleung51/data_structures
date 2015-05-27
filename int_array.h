@@ -21,15 +21,34 @@
 
 typedef struct IntArray IntArray;
 
+// CONSTRUCTOR/DESTRUCTOR:
+
 // This function creates an IntArray allocated in the heap.
 // User is responsible for deleting the IntArray.
 IntArray* IntArrayCreate();
 
-// This function frees the memory allocated for arr.
+// This function frees the memory allocated for IntArray arr.
 void IntArrayDelete( IntArray* arr );
 
-// This function adds an element to the end of the array.
+// ACCESSORS:
+
+// This function returns the value of the element at the given index in
+// an IntArray.
+int IntArrayGet( IntArray* arr, unsigned long index );
+
+// This function prints the contents of an IntArray.
+void IntArrayPrint( IntArray* arr );
+
+// MUTATORS:
+
+// This function adds an element to the end of the IntArray.
 void IntArrayAppend( IntArray* arr, int value );
+
+// This function removes the element at a given index in an IntArray.
+void IntArrayRemove( IntArray* arr, unsigned long index );
+
+// This function removes the element at the end of the IntArray.
+void IntArrayRemoveLast( IntArray* arr );
 
 
 
@@ -54,7 +73,7 @@ static void CheckNull( char* func_name, void* ptr )
 {
   if( ptr == NULL )
   {
-    printf( "Error: %s() failed to allocate memory on the heap.\n", \
+    printf( "Error: %s failed to allocate memory on the heap.\n", \
             func_name );
     exit( 2 );
   }
@@ -71,12 +90,12 @@ static void CheckIntArray( char* func_name, IntArray* arr )
 {
   if( arr == NULL )
   {
-    printf( "Error: %s () was given an invalid IntArray.\n", func_name );
+    printf( "Error: %s was given an invalid IntArray.\n", func_name );
     exit( 1 );
   }
   else if( arr->array_ == NULL )
   {
-    printf( "Error: %s () was given an IntArray with an invalid (null) "\
+    printf( "Error: %s was given an IntArray with an invalid (null) "\
             "array.\n", func_name );
     exit( 1 );
   }
@@ -95,46 +114,78 @@ static void CheckBounds( char* func_name,
                          long index,
                          unsigned long len )
 {
-/*
   if( index <= -1 || len <= index )
   {
-    printf( "Error: %s () was given an invalid index ( %l ) as the length of the array is %l .\n", func_name, index, len );
+    printf( "Error: %s was given an invalid index ( %ld ) as the length of "\
+            "the array is %lu .\n", func_name, index, len );
     exit( 1 );
   }
   return;
-*/
 }
 
-// CONSTRUCTORS:
+// CONSTRUCTOR/DESTRUCTOR:
 
 // This function creates an IntArray allocated in the heap.
 // User is responsible for deleting the IntArray.
 IntArray* IntArrayCreate()
 {
   IntArray* arr = malloc( sizeof(IntArray) );
-  CheckNull( "IntArrayCreate", arr );
+  CheckNull( "IntArrayCreate()", arr );
 
   arr->len_ = 0;
   arr->allocated_ = 16;
 
   arr->array_ = malloc( arr->allocated_ * sizeof(int) );
-  CheckNull( "IntArrayCreate", arr->array_ );
+  CheckNull( "IntArrayCreate()", arr->array_ );
 
   return arr;
 }
 
-// This function frees the memory allocated for arr.
+// This function frees the memory allocated for IntArray arr.
 void IntArrayDelete( IntArray* arr )
 {
+  CheckIntArray( "IntArrayDelete()", arr );
   free( arr->array_ );
   free( arr );
   return;
 }
 
-// This function adds an element to the end of the array.
+
+
+// ACCESSORS:
+
+// This function returns the value of the element at the given index in
+// an IntArray.
+int IntArrayGet( IntArray* arr, unsigned long index )
+{
+  CheckIntArray( "IntArrayGet()", arr );
+  CheckBounds( "IntArrayGet()", index, arr->len_ );
+  return arr->array_[index];
+}
+
+// This function prints the contents of an IntArray.
+void IntArrayPrint( IntArray* arr )
+{
+  CheckIntArray( "IntArrayPrint()", arr );
+
+  printf( "[ " );
+  for( long i = 0; i < arr->len_; i++)
+  {
+    printf( "%d ", arr->array_[i] );
+  }
+  printf( "]" );
+  return;
+}
+
+
+
+// MUTATORS:
+
+// This function adds an element to the end of an IntArray, expanding its
+// size if necessary.
 void IntArrayAppend( IntArray* arr, int value )
 {
-  CheckIntArray( "IntArrayAppend", arr );
+  CheckIntArray( "IntArrayAppend()", arr );
 
   // Expands array to double the size
   if( arr->len_ >= arr->allocated_ )
@@ -142,7 +193,7 @@ void IntArrayAppend( IntArray* arr, int value )
     arr->allocated_ *= 2;
 
     int* new_array = malloc( arr->allocated_ * sizeof(int) );
-    CheckNull( "IntArrayAppend", new_array );
+    CheckNull( "IntArrayAppend()", new_array );
     memcpy( new_array, arr->array_, arr->len_ * sizeof(int) );
 
     free( arr->array_ );
@@ -155,40 +206,34 @@ void IntArrayAppend( IntArray* arr, int value )
   return;
 }
 
-/*
-// This method removes the element at the end of the array.
-template <class T>
-void ExpandableArray<T>::Remove()
+// This function removes the element at a given index in an IntArray.
+void IntArrayRemove( IntArray* arr, unsigned long index )
 {
-  if( len_ == 0 )
+  CheckIntArray( "IntArrayRemove()", arr );
+  CheckBounds( "IntArrayRemove()", index, arr->len_ );
+
+  arr->array_[index] = arr->array_[arr->len_-1];
+  arr->len_--;
+  return;
+}
+
+// This function removes the element at the end of the IntArray.
+void IntArrayRemoveLast( IntArray* arr )
+{
+  CheckIntArray( "IntArrayRemove()", arr );
+
+  if( arr->len_ == 0 )
   {
-    std::cout << "Error: Remove() cannot remove anything from an empty array.\n" ;
+    printf( "Error: IntArrayRemove() cannot remove anything from an "\
+            "empty array.\n" );
     exit( 1 );
   }
 
-  len_--;
+  arr->len_--;
   return;
 }
 
-// This method removes the element at a given index.
-template <class T>
-void ExpandableArray<T>::Remove( unsigned long index )
-{
-  CheckBounds( index, len_, "Remove" );
-
-  array_[index] = array_[len_-1];
-  len_--;
-  return;
-}
-
-// This method returns the value of the element at the given index.
-template <class T>
-T ExpandableArray<T>::Retrieve( unsigned long index )
-{
-  CheckBounds( index, len_, "Retrieve" );
-  return array_[index];
-}
-
+/*
 // This method reassigns the value of an element at a given index.
 template <class T>
 void ExpandableArray<T>::Set( unsigned long index, T value )
@@ -235,6 +280,7 @@ void ExpandableArray<T>::Print()
       ExpandableArray* Copy( unsigned long start, unsigned long end );
         // Copies all elements from start to end-1 inclusive.
 
+// Copy constructor
 
 
  Methods to implement:
