@@ -1,5 +1,6 @@
 # Source files
-SOURCES  = test.c
+SOURCES  = ../int_array.c \
+           test.c
 
 # Header files
 HSOURCES = ../int_array.h

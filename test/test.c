@@ -1,10 +1,10 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-24
+ * Last edited: 2015-05-27
  *
  * This C program contains a testing implementation of the functions in
- * int_array.h.
+ * int_array.c.
  *
  */
 
