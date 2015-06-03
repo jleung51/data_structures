@@ -1,9 +1,9 @@
 # Source files
-SOURCES  = ../int_array.c \
+SOURCES  = ../int_array/int_array.c \
            test.c
 
 # Header files
-HSOURCES = ../int_array.h
+HSOURCES = ../int_array/int_array.h
 
 # Compiler options
 CFLAGS = -std=c99 -g -lm -Wall
