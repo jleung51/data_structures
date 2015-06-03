@@ -14,28 +14,53 @@
 
 int main()
 {
-  IntArray* array = IntArrayCreate();
+  IntArray* array1 = IntArrayCreate();
 
-  IntArrayPrint( array );
+  IntArrayPrint( array1 );
   printf( "\n" );
 
   for( int i = 0; i < 50; i++ )
   {
-    IntArrayAppend( array, i );
+    IntArrayAppend( array1, i );
   }
 
-  IntArrayPrint( array );
+  IntArrayPrint( array1 );
   printf( "\n" );
 
-  IntArrayRemoveLast( array );
-  IntArrayPrint( array );
+  IntArrayRemoveLast( array1 );
+  IntArrayPrint( array1 );
   printf( "\n" );
 
-  IntArrayRemove( array, 0 );
-  IntArrayPrint( array );
+  IntArrayRemove( array1, 0 );
+  IntArrayPrint( array1 );
   printf( "\n" );
 
-  printf( "First element in the array: %d\n", IntArrayGet( array, 0 ) );
+  printf( "First element in the array: %d\n", IntArrayGet( array1, 0 ) );
+
+  printf( "\n\n\n" );
+
+  IntArray* array2 = IntArrayCopy( array1 );
+
+  IntArrayPrint( array2 );
+  printf( "\n" );
+
+  for( int i = 0; i < 50; i++ )
+  {
+    IntArrayAppend( array2, i );
+  }
+
+  IntArrayPrint( array2 );
+  printf( "\n" );
+
+  IntArrayRemoveLast( array2 );
+  IntArrayPrint( array2 );
+  printf( "\n" );
+
+  IntArrayRemove( array2, 0 );
+  IntArrayPrint( array2 );
+  printf( "\n" );
+
+  printf( "First element in the array: %d\n", IntArrayGet( array2, 0 ) );
 
 /*
   printf( "The array containing the numbers 0-49 is " );
@@ -66,7 +91,8 @@ int main()
   array.Print();
   std::cout << ".\n\n" ;
 */
-  IntArrayDelete( array );
+  IntArrayDelete( array1 );
+  IntArrayDelete( array2 );
 
   return 0;
 }

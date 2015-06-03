@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-03
+ * Last edited: 2015-06-02
  *
  * This C program contains implementations of a self-expanding array
  * of integers, created/accessed/mutated through functions.
@@ -32,7 +32,6 @@ static void CheckNull( char* func_name, void* ptr );
 // This function prints an error message and exits the program if an invalid
 // IntArray is given.
 static void CheckIntArray( char* func_name, IntArray* arr );
-
 
 // This function prints an error message and exits the program if a given index
 // is out of bounds.
@@ -112,14 +111,14 @@ IntArray* IntArrayCopy( IntArray* arr )
   IntArray* arr_new = malloc( sizeof(IntArray) );
   CheckNull( "IntArrayCopy()", arr_new );
 
-  unsigned long length = arr->len;
+  unsigned long length = arr->len_;
   arr_new->len_ = length;
   arr_new->allocated_ = length*2;
 
   arr_new->array_ = malloc( arr_new->allocated_ * sizeof(int) );
   CheckNull( "IntArrayCopy()", arr_new );
 
-  memcpy( arr_new->array_, arr->array, length * sizeof(int) );
+  memcpy( arr_new->array_, arr->array_, length * sizeof(int) );
 
   return arr_new;
 }
