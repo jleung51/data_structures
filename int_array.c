@@ -102,6 +102,28 @@ IntArray* IntArrayCreate()
   return arr;
 }
 
+// Copy constructor
+// This function returns a deep copy of IntArray arr, allocated in the heap.
+// User is responsible for deleting the IntArray.
+IntArray* IntArrayCopy( IntArray* arr )
+{
+  CheckIntArray( "IntArrayCopy()", arr );
+
+  IntArray* arr_new = malloc( sizeof(IntArray) );
+  CheckNull( "IntArrayCopy()", arr_new );
+
+  unsigned long length = arr->len;
+  arr_new->len_ = length;
+  arr_new->allocated_ = length*2;
+
+  arr_new->array_ = malloc( arr_new->allocated_ * sizeof(int) );
+  CheckNull( "IntArrayCopy()", arr_new );
+
+  memcpy( arr_new->array_, arr->array, length * sizeof(int) );
+
+  return arr_new;
+}
+
 // This function frees the memory allocated for IntArray arr.
 void IntArrayDelete( IntArray* arr )
 {
