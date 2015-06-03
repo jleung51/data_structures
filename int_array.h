@@ -15,12 +15,19 @@
 
 typedef struct IntArray IntArray;
 
-// CONSTRUCTOR/DESTRUCTOR:
+// CONSTRUCTORS/DESTRUCTOR:
 
+// Default constructor
 // This function creates an IntArray allocated in the heap.
 // User is responsible for deleting the IntArray.
 IntArray* IntArrayCreate();
 
+// Copy constructor
+// This function returns a deep copy of IntArray arr, allocated in the heap.
+// User is responsible for deleting the IntArray.
+IntArray* IntArrayCopy( IntArray* arr );
+
+// Destructor
 // This function frees the memory allocated for IntArray arr.
 void IntArrayDelete( IntArray* arr );
 
@@ -43,5 +50,8 @@ void IntArrayRemove( IntArray* arr, unsigned long index );
 
 // This function removes the element at the end of the IntArray.
 void IntArrayRemoveLast( IntArray* arr );
+
+// This function removes all elements from the IntArray.
+void IntArrayClear( IntArray* arr );
 
 #endif

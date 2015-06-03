@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-27
+ * Last edited: 2015-06-03
  *
  * This C program contains implementations of a self-expanding array
  * of integers, created/accessed/mutated through functions.
@@ -23,11 +23,22 @@ typedef struct IntArray
   unsigned long allocated_;
 } IntArray;
 
-// STATIC FUNCTIONS:
+// STATIC FUNCTION PROTOTYPES:
 
 // This function prints an error message and exits the program if a pointer
 // is NULL (i.e. malloc has failed).
 static void CheckNull( char* func_name, void* ptr );
+
+// This function prints an error message and exits the program if an invalid
+// IntArray is given.
+static void CheckIntArray( char* func_name, IntArray* arr );
+
+
+// This function prints an error message and exits the program if a given index
+// is out of bounds.
+static void CheckBounds( char* func_name, long index, unsigned long len );
+
+// STATIC FUNCTIONS:
 
 // This function prints an error message and exits the program if a pointer
 // is NULL (i.e. malloc has failed).
@@ -41,10 +52,6 @@ static void CheckNull( char* func_name, void* ptr )
   }
   return;
 }
-
-// This function prints an error message and exits the program if an invalid
-// IntArray is given.
-static void CheckIntArray( char* func_name, IntArray* arr );
 
 // This function prints an error message and exits the program if an invalid
 // IntArray is given.
@@ -66,15 +73,7 @@ static void CheckIntArray( char* func_name, IntArray* arr )
 
 // This function prints an error message and exits the program if a given index
 // is out of bounds.
-static void CheckBounds( char* func_name,
-                         long index,
-                         unsigned long len );
-
-// This function prints an error message and exits the program if a given index
-// is out of bounds.
-static void CheckBounds( char* func_name,
-                         long index,
-                         unsigned long len )
+static void CheckBounds( char* func_name, long index, unsigned long len )
 {
   if( index <= -1 || len <= index )
   {
@@ -85,7 +84,7 @@ static void CheckBounds( char* func_name,
   return;
 }
 
-// CONSTRUCTOR/DESTRUCTOR:
+// CONSTRUCTORS/DESTRUCTOR:
 
 // This function creates an IntArray allocated in the heap.
 // User is responsible for deleting the IntArray.
