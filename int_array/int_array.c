@@ -102,7 +102,7 @@ IntArray* IntArrayCreate()
 }
 
 // Copy constructor
-// This function returns a deep copy of IntArray arr, allocated in the heap.
+// This function returns a deep copy of an IntArray, allocated in the heap.
 // User is responsible for deleting the IntArray.
 IntArray* IntArrayCopy( IntArray* arr )
 {
@@ -123,7 +123,7 @@ IntArray* IntArrayCopy( IntArray* arr )
   return arr_new;
 }
 
-// This function frees the memory allocated for IntArray arr.
+// This function frees the memory allocated for an IntArray.
 void IntArrayDelete( IntArray* arr )
 {
   CheckIntArray( "IntArrayDelete()", arr );
