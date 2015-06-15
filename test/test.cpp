@@ -16,20 +16,20 @@
 // This function prints the contents of a given array.
 void PrintArray( int* arr, unsigned int width, unsigned int height )
 {
-  for( int y = 0; y < height; ++y )
+  for( unsigned int y = 0; y < height; ++y )
   {
-    for( int x = 0; x < width; ++x )
+    for( unsigned int x = 0; x < width; ++x )
     {
       try
       {
         std::cout << arr.Get( x, y ) << " ";
       }
-      catch  //TODO what goes here?
+      catch( std::out_of_range except )
       {
-        //
+        std::cout << except.what().
       }
     }
-    std::cout << endl;
+    std::cout << std::endl;
   }
 
   return;
@@ -48,9 +48,9 @@ int main()
         arr.Set( x, y, x + y );
         arr_param.Set( x, y, x + y );
       }
-      catch  //TODO what goes here?
+      catch( std::out_of_range except )
       {
-        //
+        std::cout << except.what().
       }
     }
   }
@@ -70,9 +70,9 @@ int main()
   {
     arr.Shrink( 1, 1, 9, 1 );
   }
-  catch  //TODO what goes here?
+  catch( std::out_of_range except )
   {
-    //
+    std::cout << except.what().
   }
   std::cout << "Shrunk to its first row from the second column to the last column:" << endl;
   PrintArray( arr, arr.Width(), arr.Height() );
@@ -89,9 +89,9 @@ int main()
       {
         arr.Set( x, y, 0 );
       }
-      catch  //TODO what goes here?
+      catch( std::out_of_range except )
       {
-        //
+        std::cout << except.what().
       }
     }
   }

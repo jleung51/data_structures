@@ -27,14 +27,15 @@ class Array2d
     // Mutators:
 
     // This method sets the element at the given coordinate to a value.
-    // An exception is thrown if the coordinates are out of range.
+    // An exception is thrown if the coordinates are out of range
+    // (out_of_range).
     void Set( unsigned int x, unsigned int y, T value );
 
     // This method resizes the array to a rectangle with:
     //   the top-left coordinate (start_x, start_y) and
     //   the bottom right coordinate (end_x, end_y), inclusive.
     // An exception is thrown if a coordinate is out of bounds or if the
-    // coordinates will not create a valid rectangle.
+    // coordinates will not create a valid rectangle (out_of_range).
     void Shrink( unsigned int start_x,
                  unsigned int start_y,
                  unsigned int end_x,
@@ -49,7 +50,8 @@ class Array2d
     // Accessors:
 
     // This method returns the value at a given set of coordinates.
-    // An exception is thrown if the coordinates given are out of range.
+    // An exception is thrown if the coordinates given are out of range
+    // (out_of_range).
     T Get( unsigned int x, unsigned int y );
 
     // This method returns the width of the array.
@@ -150,7 +152,7 @@ Array2d<T>::~Array2d()
 // Mutators:
 
 // This method sets the element at the given coordinate to a value.
-// An exception is thrown if the coordinates are out of range.
+// An exception is thrown if the coordinates are out of range (out_of_range).
 template <typename T>
 void Array2d<T>::Set( unsigned int x, unsigned int y, T value )
 {
@@ -167,7 +169,7 @@ void Array2d<T>::Set( unsigned int x, unsigned int y, T value )
 //   the top-left coordinate (start_x, start_y) and
 //   the bottom right coordinate (end_x, end_y), inclusive.
 // An exception is thrown if a coordinate is out of bounds or if the
-// coordinates will not create a valid rectangle.
+// coordinates will not create a valid rectangle (out_of_range).
 template <typename T>
 void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
                  unsigned int end_x, unsigned int end_y )
@@ -240,7 +242,8 @@ void Array2d<T>::Expand( unsigned int x_greater, unsigned int y_greater )
 // Accessors:
 
 // This method returns the value at a given set of coordinates.
-// An exception is thrown if the coordinates given are out of range.
+// An exception is thrown if the coordinates given are out of range
+// (out_of_range).
 template <typename T>
 T Array2d<T>::Get( unsigned int x, unsigned int y )
 {
