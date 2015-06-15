@@ -190,7 +190,7 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
   }
 
   unsigned int width_new  = end_x - start_x + 1;
-  unsigned int height_new = end_y - start_y + 1
+  unsigned int height_new = end_y - start_y + 1;
   T* array_new = new T( width_new * height_new );
 
   for( int y = 0; y < height_new; ++y )
@@ -202,9 +202,9 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
   }
 
   delete array_;
-  array_ = array_new;
-  width_ = width_new;
-  height = height_new;
+  array_  = array_new;
+  width_  = width_new;
+  height_ = height_new;
 
   return;
 }
