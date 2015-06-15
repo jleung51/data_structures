@@ -2,10 +2,11 @@
 SOURCES  = test.cpp
 
 # Header files
-HSOURCES = array2d.hpp
+HSOURCES = ../array2d.hpp \
+           test.hpp
 
 # Compiler options
-CFLAGS = -std=c++14 -g -Wall
+CFLAGS = -std=c++11 -g -Wall
 
 #####
 ###
@@ -22,7 +23,7 @@ CFLAGS = -std=c++14 -g -Wall
 	#   To test memory allocation, run: make output && make mem_chk
 	#   To remove compiled output files, run: make clean
 
-# $ make <output_name>
+# $ make output
 output: $(SOURCES) $(HSOURCES)
 	g++ $(CFLAGS) $(SOURCES) -o output
 	# To execute the program, run: ./output

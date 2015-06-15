@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-#include "array2d.hpp"
+#include "../array2d.hpp"
 #include "test.hpp"
 
 // This function prints the contents of a given array.
