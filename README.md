@@ -1,2 +1,2 @@
 # array2d
-C++ implementation of a 2-dimensional array.
+C++ implementation of a templated 2-dimensional array.
