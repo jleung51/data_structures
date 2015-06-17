@@ -11,4 +11,5 @@
 #pragma once
 
 // This function prints the contents of a given array.
-void PrintArray( int* arr, unsigned int width, unsigned int height );
+template <typename T>
+void PrintArray( Array2d<T> arr, unsigned int width, unsigned int height );

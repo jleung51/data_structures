@@ -109,8 +109,7 @@ Array2d<T>::Array2d()
   height_ = 10;
 
   unsigned int size = width_ * height_;
-  array_  = new T(size);
-  memset( array_, 0, size * sizeof(int) );
+  array_  = new T[size];
 }
 
 // Parametrized constructor
@@ -121,8 +120,7 @@ Array2d<T>::Array2d( unsigned int width, unsigned int height )
   height_ = height;
 
   unsigned int size = width_ * height_;
-  array_  = new T(size);
-  memset( array_, 0, size * sizeof(int) );
+  array_  = new T[size];
 }
 
 // Copy constructor
@@ -133,7 +131,7 @@ Array2d<T>::Array2d( const Array2d& arr )
   height_ = arr.height_;
 
   unsigned int size = width_ * height_;
-  array_  = new T(size);
+  array_  = new T[size];
   for(int i = 0; i < size; i++)
   {
     array_[i] = arr.array_[i];
