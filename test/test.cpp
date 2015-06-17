@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-10
+ * Last edited: 2015-06-17
  *
  * This C++ program tests the implementation of the Array2d class in
  * array2d.hpp.
@@ -78,7 +78,7 @@ int main()
   std::cout << "Shrunk to its first row from the second column to the last column:" << std::endl;
   PrintArray( arr, arr.Width(), arr.Height() );
   std::cout << std::endl;
-/*
+
   unsigned int height_temp = arr.Height();
   unsigned int width_temp = arr.Width();
   arr.Expand( 2, 3 );
@@ -109,6 +109,6 @@ int main()
   std::cout << std::endl;
 
   std::cout << "All tests finished." << std::endl;
-*/
+
   return 0;
 }

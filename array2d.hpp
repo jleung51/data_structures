@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-10
+ * Last edited: 2015-06-17
  *
  * This C++ program contains a templated implementation of a 2-dimensional
  * array.
@@ -170,7 +170,7 @@ void Array2d<T>::Set( unsigned int x, unsigned int y, T value )
 // coordinates will not create a valid rectangle (out_of_range).
 template <typename T>
 void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
-                 unsigned int end_x, unsigned int end_y )
+                         unsigned int end_x, unsigned int end_y )
 {
   if( OutOfBounds(start_x, start_y) )
   {
