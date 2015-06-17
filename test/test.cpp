@@ -39,7 +39,7 @@ void PrintArray( Array2d<T> arr, unsigned int width, unsigned int height )
 int main()
 {
   Array2d<int> arr;
-/*  Array2d<int> arr_param(10, 10);
+  Array2d<int> arr_param(10, 10);
   for( int y = 0; y < 10; ++y )
   {
     for( int x = 0; x < 10; ++x )
@@ -69,7 +69,7 @@ int main()
 
   try
   {
-    arr.Shrink( 1, 1, 9, 1 );
+    arr.Shrink( 1, 0, 9, 0 );
   }
   catch( std::out_of_range except )
   {
@@ -78,7 +78,7 @@ int main()
   std::cout << "Shrunk to its first row from the second column to the last column:" << std::endl;
   PrintArray( arr, arr.Width(), arr.Height() );
   std::cout << std::endl;
-
+/*
   unsigned int height_temp = arr.Height();
   unsigned int width_temp = arr.Width();
   arr.Expand( 2, 3 );

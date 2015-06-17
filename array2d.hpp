@@ -191,7 +191,7 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
 
   unsigned int width_new  = end_x - start_x + 1;
   unsigned int height_new = end_y - start_y + 1;
-  T* array_new = new T( width_new * height_new );
+  T* array_new = new T[ width_new * height_new ];
 
   for( int y = 0; y < height_new; ++y )
   {
@@ -201,7 +201,7 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
     }
   }
 
-  delete array_;
+  delete [] array_;
   array_  = array_new;
   width_  = width_new;
   height_ = height_new;
@@ -218,7 +218,7 @@ void Array2d<T>::Expand( unsigned int x_greater, unsigned int y_greater )
   unsigned int width_new = width_ + x_greater;
   unsigned int height_new = height_ + y_greater;
 
-  T* array_new = new T( width_new * height_new );
+  T* array_new = new T[ width_new * height_new ];
   for( int y = 0; y < height_; ++y )
   {
     for( int x = 0; x < width_; ++x )
@@ -227,7 +227,7 @@ void Array2d<T>::Expand( unsigned int x_greater, unsigned int y_greater )
     }
   }
 
-  delete array_;
+  delete [] array_;
   array_ = array_new;
   width_  = width_new;
   height_ = height_new;
