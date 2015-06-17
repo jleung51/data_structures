@@ -36,4 +36,4 @@ mem_chk: $(SOURCES) $(HSOURCES)
 # $ make clean
 # Removes created files
 clean:
-	rm -f output *.o *~ ../int_array/*~
+	rm -f output *.o *~ ../*~ ../int_array/*~
