@@ -37,7 +37,6 @@ void IntArrayDelete( IntArray* arr );
 // an IntArray.
 int IntArrayGet( IntArray* arr, unsigned long index );
 
-//TODO Implementation required.
 // This function returns the current length of the IntArray.
 unsigned long IntArrayLen( IntArray* arr );
 

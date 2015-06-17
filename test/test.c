@@ -28,6 +28,9 @@ int main()
   IntArrayPrint( array1 );
   printf( "\n\n" );
 
+  printf( "There are %lu items in this array.", IntArrayLen( array1 ) );
+  printf( "\n\n" );
+
   IntArrayRemoveLast( array1 );
   IntArrayRemoveLast( array1 );
   IntArrayRemoveLast( array1 );

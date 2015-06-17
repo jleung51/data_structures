@@ -143,6 +143,13 @@ int IntArrayGet( IntArray* arr, unsigned long index )
   return arr->array_[index];
 }
 
+// This function returns the current length of the IntArray.
+unsigned long IntArrayLen( IntArray* arr )
+{
+  CheckIntArray( "IntArrayLen()", arr );
+  return arr->len_;
+}
+
 // This function prints the contents of an IntArray.
 void IntArrayPrint( IntArray* arr )
 {
