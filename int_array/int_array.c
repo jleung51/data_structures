@@ -1,10 +1,10 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-02
+ * Last edited: 2015-06-17
  *
- * This C program contains implementations of a self-expanding array
- * of integers, created/accessed/mutated through functions.
+ * This C program contains implementations of an IntArray, a self-expanding
+ * array of integers, created/accessed/mutated through functions.
  *
  */
 
@@ -198,11 +198,11 @@ void IntArrayRemove( IntArray* arr, unsigned long index )
 // This function removes the element at the end of the IntArray.
 void IntArrayRemoveLast( IntArray* arr )
 {
-  CheckIntArray( "IntArrayRemove()", arr );
+  CheckIntArray( "IntArrayRemoveLast()", arr );
 
   if( arr->len_ == 0 )
   {
-    printf( "Error: IntArrayRemove() cannot remove anything from an "\
+    printf( "Error: IntArrayRemoveLast() cannot remove anything from an "\
             "empty array.\n" );
     exit( 1 );
   }
@@ -210,35 +210,3 @@ void IntArrayRemoveLast( IntArray* arr )
   arr->len_--;
   return;
 }
-
-/*
-// This method reassigns the value of an element at a given index.
-template <class T>
-void ExpandableArray<T>::Set( unsigned long index, T value )
-{
-  CheckBounds( index, len_, "Set" );
-  array_[index] = value;
-  return;
-}
-
-// This method returns the length of the array.
-template <class T>
-unsigned long ExpandableArray<T>::Length()
-{
-  return len_;
-}
-
-// This method prints the contents of the array,
-template <class T>
-void ExpandableArray<T>::Print()
-{
-  std::cout << "[ " ;
-  for( int i = 0; i < len_; i++ )
-  {
-    std::cout << array_[i] << " " ;
-  }
-  std::cout << "]" ;
-
-  return;
-}
-*/

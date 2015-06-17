@@ -1,10 +1,10 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-27
+ * Last edited: 2015-06-17
  *
- * This C program contains implementations of a self-expanding array
- * of integers, created/accessed/mutated through functions.
+ * This C program contains implementations of an IntArray, a self-expanding
+ * array of integers, created/accessed/mutated through functions.
  *
  */
 
@@ -37,10 +37,18 @@ void IntArrayDelete( IntArray* arr );
 // an IntArray.
 int IntArrayGet( IntArray* arr, unsigned long index );
 
+//TODO Implementation required.
+// This function returns the current length of the IntArray.
+unsigned long IntArrayLen( IntArray* arr );
+
 // This function prints the contents of an IntArray.
 void IntArrayPrint( IntArray* arr );
 
 // MUTATORS:
+
+//TODO Implementation required.
+// This function sets an element in the IntArray to a given value.
+void IntArraySet( IntArray* arr, unsigned long index, int value );
 
 // This function adds an element to the end of the IntArray.
 void IntArrayAppend( IntArray* arr, int value );
@@ -51,6 +59,7 @@ void IntArrayRemove( IntArray* arr, unsigned long index );
 // This function removes the element at the end of the IntArray.
 void IntArrayRemoveLast( IntArray* arr );
 
+//TODO Implementation required.
 // This function removes all elements from the IntArray.
 void IntArrayClear( IntArray* arr );
 
