@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-02
+ * Last edited: 2015-06-17
  *
  * This C program contains a testing implementation of the functions in
  * int_array.c.
@@ -16,51 +16,56 @@ int main()
 {
   IntArray* array1 = IntArrayCreate();
 
+  printf( "Empty array:\n" );
   IntArrayPrint( array1 );
-  printf( "\n" );
+  printf( "\n\n" );
 
   for( int i = 0; i < 50; i++ )
   {
     IntArrayAppend( array1, i );
   }
-
+  printf( "Array with the numbers 0-49:\n" );
   IntArrayPrint( array1 );
-  printf( "\n" );
+  printf( "\n\n" );
 
   IntArrayRemoveLast( array1 );
+  IntArrayRemoveLast( array1 );
+  IntArrayRemoveLast( array1 );
+  IntArrayRemoveLast( array1 );
+  IntArrayRemoveLast( array1 );
+  printf( "Array with the numbers 0-44:\n" );
   IntArrayPrint( array1 );
-  printf( "\n" );
+  printf( "\n\n" );
 
   IntArrayRemove( array1, 0 );
+  printf( "Array with the numbers 44, 1-43:\n" );
   IntArrayPrint( array1 );
-  printf( "\n" );
+  printf( "\n\n" );
 
-  printf( "First element in the array: %d\n", IntArrayGet( array1, 0 ) );
-
-  printf( "\n\n\n" );
+  printf( "First element in the array: %d", IntArrayGet( array1, 0 ) );
+  printf( "\n\n" );
 
   IntArray* array2 = IntArrayCopy( array1 );
 
+  printf( "Copy of the array with the numbers 44, 1-43:\n" );
   IntArrayPrint( array2 );
-  printf( "\n" );
+  printf( "\n\n" );
 
   for( int i = 0; i < 50; i++ )
   {
     IntArrayAppend( array2, i );
   }
-
+  printf( "Above array with the numbers 44, 1-43, 0-49:\n" );
   IntArrayPrint( array2 );
-  printf( "\n" );
+  printf( "\n\n" );
 
   IntArrayRemoveLast( array2 );
+  printf( "Above array with the numbers 44, 1-43, 0-48:\n" );
   IntArrayPrint( array2 );
-  printf( "\n" );
+  printf( "\n\n" );
 
-  IntArrayRemove( array2, 0 );
-  IntArrayPrint( array2 );
-  printf( "\n" );
-
-  printf( "First element in the array: %d\n", IntArrayGet( array2, 0 ) );
+  printf( "First element in the array: %d", IntArrayGet( array2, 0 ) );
+  printf( "\n\n" );
 
 /*
   printf( "The array containing the numbers 0-49 is " );
