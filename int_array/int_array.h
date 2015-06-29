@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-17
+ * Last edited: 2015-06-29
  *
  * This C program contains implementations of an IntArray, a self-expanding
  * array of integers, created/accessed/mutated through functions.
@@ -42,6 +42,9 @@ unsigned long IntArrayLen( IntArray* arr );
 
 // This function prints the contents of an IntArray.
 void IntArrayPrint( IntArray* arr );
+
+//TODO Implementation required.
+int* IntArrayToArray( IntArray* arr );
 
 // MUTATORS:
 
