@@ -48,7 +48,6 @@ int* IntArrayToArray( IntArray* arr );
 
 // MUTATORS:
 
-//TODO Implementation required.
 // This function sets an element in the IntArray to a given value.
 void IntArraySet( IntArray* arr, unsigned long index, int value );
 
