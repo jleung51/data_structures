@@ -169,7 +169,11 @@ void IntArrayPrint( IntArray* arr )
 // This function sets an element in the IntArray to a given value.
 void IntArraySet( IntArray* arr, unsigned long index, int value )
 {
+  CheckIntArray( "IntArraySet()", arr );
+  CheckBounds( "IntArraySet()", index, arr->len_ );
 
+  arr->array_[index] = value;
+  return;
 }
 
 // This function adds an element to the end of an IntArray, expanding its
