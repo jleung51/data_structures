@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-17
+ * Last edited: 2015-06-29
  *
  * This C program contains a testing implementation of the functions in
  * int_array.c.
@@ -68,6 +68,13 @@ int main()
   printf( "\n\n" );
 
   printf( "First element in the array: %d", IntArrayGet( array2, 0 ) );
+  printf( "\n\n" );
+
+  IntArraySet( array2, 0, 0 );
+  IntArraySet( array2, 2, 0 );
+  IntArraySet( array2, IntArrayLen( array2 )-1, 0 );
+  printf( "Above array with the first, third, and last elements set to 0:\n" );
+  IntArrayPrint( array2 );
   printf( "\n\n" );
 
 /*
