@@ -9,8 +9,34 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "../int_array/int_array.h"
+
+// STATIC FUNCTIONS:
+
+// This function prints the contents of a given array.
+static void ArrayPrint( int* array, unsigned long len );
+
+// This function prints the contents of a given array.
+static void ArrayPrint( int* array, unsigned long len )
+{
+  if( array == NULL )
+  {
+    printf( "Error: ArrayPrint() was given a null pointer.\n" );
+    exit( 1 );
+  }
+
+  printf( "[ " );
+  int i;
+  for( i = 0; i < len; ++i )
+  {
+    printf( "%d ", array[i] );
+  }
+  printf( "]" );
+
+  return;
+}
 
 int main()
 {
