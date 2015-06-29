@@ -170,8 +170,18 @@ void IntArrayPrint( IntArray* arr )
 // User is responsible for freeing the allocated memory.
 int* IntArrayToArray( IntArray* arr )
 {
+  CheckIntArray( "IntArrayToArray()", arr );
 
-  return NULL;
+  unsigned long length = arr->len_;
+
+  int* arr_copy = malloc( length * sizeof(int) );
+  int i;
+  for( i = 0; i < length; ++i )
+  {
+    arr_copy[i] = arr->array_[i];
+  }
+
+  return arr_copy;
 }
 
 // MUTATORS:
