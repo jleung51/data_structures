@@ -164,6 +164,16 @@ void IntArrayPrint( IntArray* arr )
   return;
 }
 
+// This function returns the contents of the IntArray in a new array, allocated
+// in heap memory.
+// Program will exit if IntArrayToArray() is given an empty array.
+// User is responsible for freeing the allocated memory.
+int* IntArrayToArray( IntArray* arr )
+{
+
+  return NULL;
+}
+
 // MUTATORS:
 
 // This function sets an element in the IntArray to a given value.

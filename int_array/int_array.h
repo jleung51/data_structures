@@ -43,7 +43,10 @@ unsigned long IntArrayLen( IntArray* arr );
 // This function prints the contents of an IntArray.
 void IntArrayPrint( IntArray* arr );
 
-//TODO Implementation required.
+// This function returns the contents of the IntArray in a new array, allocated
+// in heap memory.
+// Program will exit if IntArrayToArray() is given an empty array.
+// User is responsible for freeing the allocated memory.
 int* IntArrayToArray( IntArray* arr );
 
 // MUTATORS:
