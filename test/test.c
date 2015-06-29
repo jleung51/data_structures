@@ -103,6 +103,12 @@ int main()
   IntArrayPrint( array2 );
   printf( "\n\n" );
 
+  int* array_copy = IntArrayToArray( array2 );
+  printf( "A copy of the above array:\n" );
+  ArrayPrint( array_copy, IntArrayLen( array2 ) );
+  free( array_copy );
+  printf( "\n\n" );
+
 /*
   printf( "The array containing the numbers 0-49 is " );
   array.Print();
