@@ -63,8 +63,4 @@ void IntArrayRemove( IntArray* arr, unsigned long index );
 // This function removes the element at the end of the IntArray.
 void IntArrayRemoveLast( IntArray* arr );
 
-//TODO Implementation required.
-// This function removes all elements from the IntArray.
-void IntArrayClear( IntArray* arr );
-
 #endif
