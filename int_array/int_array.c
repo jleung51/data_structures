@@ -35,7 +35,7 @@ static void CheckIntArray( char* func_name, IntArray* arr );
 
 // This function prints an error message and exits the program if a given index
 // is out of bounds.
-static void CheckBounds( char* func_name, long index, unsigned long len );
+static void CheckBounds( char* func_name, IntArray* arr, long index );
 
 // STATIC FUNCTIONS:
 
@@ -72,12 +72,12 @@ static void CheckIntArray( char* func_name, IntArray* arr )
 
 // This function prints an error message and exits the program if a given index
 // is out of bounds.
-static void CheckBounds( char* func_name, long index, unsigned long len )
+static void CheckBounds( char* func_name, IntArray* arr, long index )
 {
-  if( index <= -1 || len <= index )
+  if( index <= -1 || arr->len_ <= index )
   {
     printf( "Error: %s was given an invalid index ( %ld ) as the length of "\
-            "the array is %lu .\n", func_name, index, len );
+            "the array is %lu .\n", func_name, index, arr->len_ );
     exit( 1 );
   }
   return;
@@ -139,7 +139,7 @@ void IntArrayDelete( IntArray* arr )
 int IntArrayGet( IntArray* arr, unsigned long index )
 {
   CheckIntArray( "IntArrayGet()", arr );
-  CheckBounds( "IntArrayGet()", index, arr->len_ );
+  CheckBounds( "IntArrayGet()", arr, index );
   return arr->array_[index];
 }
 
@@ -190,7 +190,7 @@ int* IntArrayToArray( IntArray* arr )
 void IntArraySet( IntArray* arr, unsigned long index, int value )
 {
   CheckIntArray( "IntArraySet()", arr );
-  CheckBounds( "IntArraySet()", index, arr->len_ );
+  CheckBounds( "IntArraySet()", arr, index );
 
   arr->array_[index] = value;
   return;
@@ -225,7 +225,7 @@ void IntArrayAppend( IntArray* arr, int value )
 void IntArrayRemove( IntArray* arr, unsigned long index )
 {
   CheckIntArray( "IntArrayRemove()", arr );
-  CheckBounds( "IntArrayRemove()", index, arr->len_ );
+  CheckBounds( "IntArrayRemove()", arr, index );
 
   arr->array_[index] = arr->array_[arr->len_-1];
   arr->len_--;
