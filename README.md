@@ -6,5 +6,5 @@ C++ implementations of a binary tree class (unsorted/sorted) and related methods
 2. Implement predecessor/successor removal.
 3. Implement Find( value ) function.
 4. Implement Count( value ) function.
-3. Implement rotation of the tree.
-4. Implement red-black binary tree implementation.
+5. Implement rotation of the tree.
+6. Implement red-black binary tree implementation.
