@@ -79,18 +79,34 @@ int main()
   PrintArray( arr, arr.Width(), arr.Height() );
   std::cout << std::endl;
 
-  unsigned int height_temp = arr.Height();
-  unsigned int width_temp = arr.Width();
+  unsigned int height_old = arr.Height();
+  unsigned int width_old  = arr.Width();
   arr.Expand( 2, 3 );
-  for( unsigned int y = height_temp; y < arr.Height(); ++y )
+  unsigned int height_new = arr.Height();
+  unsigned int width_new  = arr.Width();
+  for( unsigned int y = 0; y < height_old; ++y )
   {
-    for( unsigned int x = width_temp; x < arr.Width(); ++x )
+    for( unsigned int x = width_old; x < width_new; ++x )
     {
       try
       {
         arr.Set( x, y, 0 );
       }
       catch( std::out_of_range except )
+      {
+        std::cout << except.what();
+      }
+    }
+  }
+  for (unsigned int y = height_old; y < height_new; ++y)
+  {
+    for (unsigned int x = 0; x < width_new; ++x)
+    {
+      try
+      {
+        arr.Set(x, y, 0);
+      }
+      catch (std::out_of_range except)
       {
         std::cout << except.what();
       }
