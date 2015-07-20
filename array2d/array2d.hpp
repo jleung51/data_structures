@@ -44,8 +44,8 @@ class Array2d
     // This method resizes the array to a larger rectangle with the dimensions
     // of the current width plus x_greater, and the current height
     // plus y_greater.
-    // The new elements are uninitialized.
-    void Expand( unsigned int x_greater, unsigned int y_greater );
+    // The new elements are initialized to the value filler.
+    void Expand( unsigned int x_greater, unsigned int y_greater, T filler );
 
     // Accessors:
 
@@ -214,17 +214,28 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
 // of the current width plus x_greater, and the current height plus y_greater.
 // The new elements are uninitialized.
 template <typename T>
-void Array2d<T>::Expand( unsigned int x_greater, unsigned int y_greater )
+void Array2d<T>::Expand( unsigned int x_greater,
+                         unsigned int y_greater,
+                         T filler )
 {
   unsigned int width_new = width_ + x_greater;
   unsigned int height_new = height_ + y_greater;
-
   T* array_new = new T[ width_new * height_new ];
-  for( int y = 0; y < height_; ++y )
+
+  for( int y = 0; y < height_new; ++y )
   {
-    for( int x = 0; x < width_; ++x )
+    for( int x = 0; x < width_new; ++x )
     {
-      array_new[ y * width_new + x ] = array_[ y * width_ + x ];
+
+      if ( y < height_ && x < width_ )
+      {
+        array_new[y * width_new + x] = array_[y * width_ + x];
+      }
+      else
+      {
+        array_new[y*width_new + x] = filler;
+      }
+
     }
   }
 
