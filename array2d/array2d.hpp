@@ -197,7 +197,6 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
   {
     for( int x = 0; x < width_new; ++x )
     {
-      std::cout << "Copying value " << array_[(y + start_y) * width_ + (x + start_x)] << " from (" << x + start_x << ", " << y + start_y << ") to (" << x << ", " << y << ")." << std::endl;
       array_new[ y * width_new + x ]
         = array_[ (y+start_y) * width_ + (x+start_x) ];
     }
