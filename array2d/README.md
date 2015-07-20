@@ -2,4 +2,6 @@
 C++ implementation of a templated 2-dimensional array.
 
 ###TODO
-1. Fix Shrink() and Expand() bugs relating to the indexes used.
+1. Add Count() method.
+2. Add Search() method.
+3. Add Sort() method.
