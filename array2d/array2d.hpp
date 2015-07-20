@@ -132,7 +132,7 @@ Array2d<T>::Array2d( const Array2d& arr )
 
   unsigned int size = width_ * height_;
   array_  = new T[size];
-  for(int i = 0; i < size; i++)
+  for ( unsigned int i = 0; i < size; i++ )
   {
     array_[i] = arr.array_[i];
   }
@@ -193,9 +193,9 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
   unsigned int height_new = end_y - start_y;
   T* array_new = new T[ width_new * height_new ];
 
-  for( int y = 0; y < height_new; ++y )
+  for( unsigned int y = 0; y < height_new; ++y )
   {
-    for( int x = 0; x < width_new; ++x )
+    for( unsigned int x = 0; x < width_new; ++x )
     {
       array_new[ y * width_new + x ]
         = array_[ (y+start_y) * width_ + (x+start_x) ];
@@ -222,9 +222,9 @@ void Array2d<T>::Expand( unsigned int x_greater,
   unsigned int height_new = height_ + y_greater;
   T* array_new = new T[ width_new * height_new ];
 
-  for( int y = 0; y < height_new; ++y )
+  for( unsigned int y = 0; y < height_new; ++y )
   {
-    for( int x = 0; x < width_new; ++x )
+    for( unsigned int x = 0; x < width_new; ++x )
     {
 
       if ( y < height_ && x < width_ )
