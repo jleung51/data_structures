@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-17
+ * Last edited: 2015-07-19
  *
  * This C++ program tests the implementation of the Array2d class in
  * array2d.hpp.
@@ -109,6 +109,10 @@ int main()
   std::cout << std::endl;
 
   std::cout << "All tests finished." << std::endl;
+
+  std::cout << "Press any key to finish: ";
+  getchar();
+  std::cout << std::endl;
 
   return 0;
 }
