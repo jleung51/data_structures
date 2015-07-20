@@ -69,7 +69,7 @@ int main()
 
   try
   {
-    arr.Shrink( 1, 0, 9, 0 );
+    arr.Shrink( 1, 0, 10, 1 );
   }
   catch( std::out_of_range except )
   {

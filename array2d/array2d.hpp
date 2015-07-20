@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-17
+ * Last edited: 2015-07-19
  *
  * This C++ program contains a templated implementation of a 2-dimensional
  * array.
@@ -32,8 +32,8 @@ class Array2d
     void Set( unsigned int x, unsigned int y, T value );
 
     // This method resizes the array to a rectangle with:
-    //   the top-left coordinate (start_x, start_y) and
-    //   the bottom right coordinate (end_x, end_y), inclusive.
+    //   the top-left coordinate (start_x, start_y - 1) and
+    //   the bottom right coordinate (end_x, end_y - 1), inclusive.
     // An exception is thrown if a coordinate is out of bounds or if the
     // coordinates will not create a valid rectangle (out_of_range).
     void Shrink( unsigned int start_x,
@@ -164,8 +164,8 @@ void Array2d<T>::Set( unsigned int x, unsigned int y, T value )
 }
 
 // This method resizes the array to a rectangle with:
-//   the top-left coordinate (start_x, start_y) and
-//   the bottom right coordinate (end_x, end_y), inclusive.
+//   the top-left coordinate (start_x, start_y - 1) and
+//   the bottom right coordinate (end_x, end_y - 1), inclusive.
 // An exception is thrown if a coordinate is out of bounds or if the
 // coordinates will not create a valid rectangle (out_of_range).
 template <typename T>
@@ -177,7 +177,7 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
     throw std::out_of_range("Error: Shrink() was given an invalid "\
                             "start coordinate,");
   }
-  else if( OutOfBounds(end_x, end_y) )
+  else if( OutOfBounds(end_x-1, end_y-1) )
   {
     throw std::out_of_range("Error: Shrink() was given an invalid end "\
                             "coordinate.");
@@ -189,8 +189,8 @@ void Array2d<T>::Shrink( unsigned int start_x, unsigned int start_y,
                                 "rectangle.");
   }
 
-  unsigned int width_new  = end_x - start_x + 1;
-  unsigned int height_new = end_y - start_y + 1;
+  unsigned int width_new  = end_x - start_x;
+  unsigned int height_new = end_y - start_y;
   T* array_new = new T[ width_new * height_new ];
 
   for( int y = 0; y < height_new; ++y )
