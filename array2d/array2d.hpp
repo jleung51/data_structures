@@ -252,7 +252,7 @@ T Array2d<T>::Get( unsigned int x, unsigned int y )
     throw std::out_of_range("Error: Get() was given an invalid index.");
   }
 
-  return Index(x, y);
+  return array_[ Index(x, y) ];
 }
 
 // This method returns the width of the array.
