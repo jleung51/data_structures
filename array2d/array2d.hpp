@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-07-19
+ * Last edited: 2015-07-22
  *
  * This C++ program contains a templated implementation of a 2-dimensional
  * array.
@@ -62,6 +62,9 @@ class Array2d
 
     // This method returns the total size of the array.
     unsigned int Size();
+
+    // This method returns the number of occurrences of a given item.
+    unsigned int Count( T value );
 
   private:
     T* array_;
@@ -284,4 +287,21 @@ template <typename T>
 unsigned int Array2d<T>::Size()
 {
   return width_ * height_;
+}
+
+// This method returns the number of occurrences of a given item.
+template <typename T>
+unsigned int Array2d<T>::Count( T value )
+{
+  unsigned int count = 0;
+  unsigned int size = width_ * height_;
+
+  for( unsigned int i = 0; i < size; ++i )
+  {
+    if( array_[i] == value )
+    {
+      ++count;
+    }
+  }
+  return count;
 }

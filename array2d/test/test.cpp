@@ -84,6 +84,15 @@ int main()
   PrintArray<int>( arr, arr.Width(), arr.Height() );
   std::cout << std::endl;
 
+  unsigned int count_1 = arr.Count( 1 );
+  std::cout << "The value 1 appears in the array " << count_1 << " time";
+  if( count_1 != 1 )
+  {
+    std::cout << "s";
+  }
+  std::cout << "." << std::endl;
+  std::cout << std::endl;
+
   std::cout << "Original array created with the parametrized constructor:" << std::endl;
   PrintArray<int>( arr_param, arr_param.Width(), arr_param.Height() );
   std::cout << std::endl;
