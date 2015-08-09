@@ -98,18 +98,19 @@ class BinaryTree
     BinaryNode<T>* root;
     unsigned int size;
 
-    // This private method calls CopyNodes_() to copy all the contents of one
+    // This private method calls CopyNodes() to copy all the contents of one
     // binary tree into another.
-    void CopyNodes( BinaryTree& tree_to_copy );
+    void CopyTree( BinaryTree& tree_to_copy );
     
-    // Only to be used by CopyNodes().
+    // Only to be used by CopyTree().
     // This private method copies all child nodes of and including to_copy
     // from its binary tree to the binary tree of parent, where parent's
     // child node in direction d of the new tree corresponds to the node to_copy
     // in the copied tree.
-    void CopyNodes_( BinaryNode* parent,
-                     direction d,
-                     BinaryNode* node_to_copy );
+    // The pointer to the new node is returned.
+    BinaryNode* CopyNodes( BinaryNode* parent,
+                           direction d,
+                           BinaryNode* node_to_copy );
 
 /*
     void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
@@ -120,6 +121,17 @@ class BinaryTree
 
 };
 
+
+
+// PRIVATE METHODS:
+
+// This private method calls CopyNodes_() to copy all the contents of one
+// binary tree into another.
+void CopyTree( BinaryTree& tree_to_copy )
+{
+  root = CopyNodes( nullptr, kleft, tree_to_copy->root )
+  return;
+}
 
 /*
 
