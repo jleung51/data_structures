@@ -19,6 +19,7 @@ typedef struct HeapArray
 {
   int* array_;
   unsigned long len_;
+  int allocated_;
 } HeapArray;
 
 // STATIC FUNCTION PROTOTYPES:
