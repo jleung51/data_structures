@@ -134,6 +134,47 @@ void BinaryTree<T>::CopyTree( BinaryTree<T>& tree_to_copy )
   return;
 }
 
+// Only to be used by CopyTree().
+// This private method copies all child nodes of and including to_copy
+// from its binary tree to the binary tree of parent, where parent's
+// child node in direction d of the new tree corresponds to the node to_copy
+// in the copied tree.
+// The pointer to the new node is returned.
+template <class T>
+BinaryNode<T>* BinaryTree<T>::CopyNodes( BinaryNode<T>* parent,
+                                         direction d,
+                                         BinaryNode<T>* node_to_copy )
+{
+  BinaryNode<T>* new_node = new BinaryNode<T>( node_to_copy->value_ );
+  new_node->parent_ = parent;
+  if( parent != nullptr )
+  {
+    if( d == direction::kLeft )
+    {
+      parent->left = new_node;
+    }
+    else
+    {
+      parent->right = new_node;
+    }
+  }
+  
+  if( node_to_copy->left_ != nullptr )
+  {
+    new_node->left_ = CopyNodes( new_node,
+                                 direction::kLeft,
+                                 node_to_copy->left_ );
+  }
+  if( node_to_copy->right_ != nullptr )
+  {
+    new_node->right_ = CopyNodes( new_node,
+                                  direction::kRight,
+                                  node_to_copy->right_ );
+  }
+  
+  return;
+}
+
 /*
 
 // ESSENTIAL METHODS:
