@@ -25,70 +25,22 @@ typedef struct HeapArray
 
 // STATIC FUNCTION PROTOTYPES:
 
-// This function prints an error message and exits the program if a pointer
-// is NULL (i.e. malloc has failed).
-static void CheckNull( char* func_name, void* ptr );
-
-// This function prints an error message and exits the program if an invalid
-// HeapArray is given.
-static void CheckHeapArray( char* func_name, HeapArray* arr );
-
-// This function prints an error message and exits the program if a given index
-// is out of bounds.
-static void CheckBounds( char* func_name, HeapArray* arr, long index );
-
 // This function reasserts the properties of a max heap by bubbling up from a
 // given node after an insert.
+// HeapArray* ha:
+//   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
+//   an error message will be displayed.
+// unsigned long index:
+//   If out of bounds, an error message will be displayed.
 static void BubbleUp( HeapArray* ha, unsigned long index );
 
 // This function reasserts the properties of a max heap by bubbling down from
 // the root after an insert.
+// HeapArray* ha:
+//   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
+//   an error message will be displayed.
 static void BubbleDown( HeapArray* ha );
 
 // STATIC FUNCTIONS:
 
-// This function prints an error message and exits the program if a pointer
-// is NULL (i.e. malloc has failed).
-static void CheckNull( char* func_name, void* ptr )
-{
-  if( ptr == NULL )
-  {
-    printf( "Error: %s failed to allocate memory on the heap.\n", \
-            func_name );
-    exit( 2 );
-  }
-  return;
-}
-
-// This function prints an error message and exits the program if an invalid
-// HeapArray is given.
-static void CheckHeapArray( char* func_name, HeapArray* arr )
-{
-  if( arr == NULL )
-  {
-    printf( "Error: %s was given an invalid HeapArray.\n", func_name );
-    exit( 1 );
-  }
-  else if( arr->array_ == NULL )
-  {
-    printf( "Error: %s was given a HeapArray with an invalid (null) "\
-            "array.\n", func_name );
-    exit( 1 );
-  }
-  return;
-}
-
-// This function prints an error message and exits the program if a given index
-// is out of bounds.
-static void CheckBounds( char* func_name, HeapArray* arr, long index )
-{
-  if( index <= -1 || arr->len_ <= index )
-  {
-    printf( "Error: %s was given an invalid index ( %ld ) as the length of "\
-            "the array is %lu .\n", func_name, index, arr->len_ );
-    exit( 1 );
-  }
-  return;
-}
-
-// CONSTRUCTORS/DESTRUCTOR:
+//TODO
