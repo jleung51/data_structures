@@ -121,7 +121,28 @@ class BinaryTree
 
 };
 
+// Default constructor
+template <class T>
+BinaryTree<T>::BinaryTree()
+{
+  root = nullptr;
+  size = 0;
+}
 
+// Copy constructor
+template <class T>
+BinaryTree<T>::BinaryTree( BinaryTree<T>& bt )
+{
+  size = bt.size;
+  CopyTree( bt );
+}
+
+// Destructor
+template <class T>
+BinaryTree<T>::~BinaryTree()
+{
+  //TODO: Implement this
+}
 
 // PRIVATE METHODS:
 
