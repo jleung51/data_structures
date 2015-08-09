@@ -1,17 +1,19 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-05-21
+ * Last edited: 2015-08-08
  *
- * This C++ program contains the implementation of a binary tree, composed of nodes of any given type.
+ * This C++ program contains the implementation of a binary tree class, composed
+ * of a templated node class.
  *
  */
 
 #pragma once
 
 #include <iostream>
-#include <assert.h>
-#include <stdlib.h>
+#include <stdexcept>
+
+#include "binary_node.hpp"
 
 enum class direction
 {
@@ -20,50 +22,91 @@ enum class direction
 };
 
 template <class T>
-class BinaryNode
+class BinaryTree
 {
   public:
+  
+    // CONSTRUCTORS/DESTRUCTOR:
 
-    // CONSTRUCTOR:
-    BinaryNode( T new_value );
+    // Default constructor
+    BinaryTree();
+    
+    // Copy constructor
+    BinaryTree( BinaryTree& bt );
+    
+    // Destructor    
+    ~BinaryTree();
 
-    // ESSENTIAL METHODS:
-    void SetValue( T num );
-    T GetValue();
-    void AssignNode( BinaryNode* new_node, direction d );  // Assigns a new child node.
-    void RemoveNode();
+    // MUTATORS:
+    
+    // This method sets the value of node n to a new value.
+    // An exception is thrown if:
+    //    the node is not found.
+    void SetValue( BinaryNode<T>* n, T value );
+    
+    // This method creates a new node with the given value, and sets it as the
+    // child of the given parent node.
+    // An exception is thrown if:
+    //   the parent is not found.
+    //   the parent's child in direction d already exists.
+    void AssignChild( BinaryNode<T>* parent,
+                      direction d,
+                      T value );
+    
+    // This method removes the given node and its children, if applicable.
+    // An exception is thrown if:
+    //   the node is not found.
+    bool RemoveNode( BinaryNode<T>* n );
 
-    // UTILITY METHODS:
-    void PrintTree();  // Prints nodes from left to right
-    void PrintNodes();  // Prints a description of nodes and their hierarchy.
-                        // Describes how the binary tree should be drawn visually.
-    int CountNodes();  // Includes itself and all child nodes.
-    int Height();  // Length of longest branch from the root.
-                   // A binary tree consisting of one node has a height of 0.
-    int NodeExists( direction d );  // Returns nonzero if the node's direction d is non-null.
-
-    // SORTED BINARY TREE (numerical) METHODS:
-    // Called by the root of the binary tree unless otherwise specified.
-    void ToArray( T* array );  // Returns the elements of the binary tree in the given array.
-    BinaryNode* Search( T target );  // Returns the pointer of the target, or nullptr if not found.
-    void InsertSorted( BinaryNode* node );
-    void RemoveSorted( T num );  // All nodes below are removed as well.
-                                 // Nothing happens if the value is not found or the root is the
-                                 // node to be removed.
+    // ACCESSORS:
+    
+    // This method returns the value of node n.
+    // An exception is thrown if:
+    //   the node is not found.
+    T GetValue( BinaryNode<T>* n );
+    
+    // This method returns the 1ength of the longest branch from the root
+    // to a leaf.
+    // A tree consisting of 1 node has a height of 0.
+    unsigned int Height();
+                   
+    // This method returns the 1ength of the longest branch from node n
+    // to a leaf.
+    // A tree consisting of 1 node has a height of 0.
+    unsigned int Height( BinaryNode<T>* n );
+    
+    // This method returns the pointer to the first occurrence of a binary node
+    // with the given value (using depth-first search).
+    // nullptr is returned if:
+    //   the value is not found.
+    BinaryNode<T>* Search( T value );
+    
+    // This method returns the elements of the binary tree in an array
+    // allocated in dynamic memory.
+    // User is responsible for de-allocating the array.
+    T* ToArray();
+    
+    // This method runs an in-order traversal of the tree, and executes a
+    // function on each value.
+    //void InOrder( function foo );
+    
+    // This method prints a description of nodes and their hierarchy.
+    // The description will detail how the binary tree should be drawn visually.
+    void PrintNodes();
 
   private:
-    T value;
-    BinaryNode* left;
-    BinaryNode* right;
-    BinaryNode* parent;
+    BinaryNode<T>* root;
+    unsigned int size;
 
+/*
     void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
     void PrintNodes_( unsigned int depth );  // Only for use by PrintNodes().
     void PrintTreeElements();  // Only for use by PrintTree().
     void ElementsToArray( T* array, int* elements_copied );  // Only for use by ToArray().
+*/
 };
 
-
+/*
 
 // Constructor
 template <class T>
@@ -479,3 +522,5 @@ void BinaryNode<T>::RemoveSorted( T num )
 
   return;
 }
+
+*/
