@@ -100,7 +100,7 @@ class BinaryTree
 
     // This private method calls CopyNodes() to copy all the contents of one
     // binary tree into another.
-    void CopyTree( BinaryTree& tree_to_copy );
+    void CopyTree( BinaryTree<T>& tree_to_copy );
     
     // Only to be used by CopyTree().
     // This private method copies all child nodes of and including to_copy
@@ -108,9 +108,9 @@ class BinaryTree
     // child node in direction d of the new tree corresponds to the node to_copy
     // in the copied tree.
     // The pointer to the new node is returned.
-    BinaryNode* CopyNodes( BinaryNode* parent,
-                           direction d,
-                           BinaryNode* node_to_copy );
+    BinaryNode<T>* CopyNodes( BinaryNode<T>* parent,
+                              direction d,
+                              BinaryNode<T>* node_to_copy );
 
 /*
     void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
@@ -127,9 +127,10 @@ class BinaryTree
 
 // This private method calls CopyNodes_() to copy all the contents of one
 // binary tree into another.
-void CopyTree( BinaryTree& tree_to_copy )
+template <class T>
+void BinaryTree<T>::CopyTree( BinaryTree<T>& tree_to_copy )
 {
-  root = CopyNodes( nullptr, kleft, tree_to_copy->root )
+  root = CopyNodes( nullptr, direction::kLeft, tree_to_copy->root );
   return;
 }
 
