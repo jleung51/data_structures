@@ -36,13 +36,16 @@ HeapArray* HeapArrayCreateFromArray( int* arr );
 // Copy constructor
 // This function returns a pointer to a heap which contains the same contents
 // as the given parameter HeapArray.
+// NULL is returned if:
+//   Memory allocation fails.
+//   The given pointer is invalid.
 HeapArray* HeapArrayCopy( const HeapArray* ha );
 
 // Destructor
 // This function deallocates the memory allocated for a heap array, and for
 // the array as well, if necessary.
 // Non-zero (true) is returned if:
-//   The deletion is successful.
+//   The operation is successful.
 // 0 (false) is returned if:
 //   The given pointer is invalid.
 int HeapArrayDelete( HeapArray* ha );
