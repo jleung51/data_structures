@@ -1,5 +1,6 @@
 # Heap-Array
-C implementation of a heap, implemented using an array.
+C implementation of a max heap, implemented using an array.
 
 ###Todo:
-1. Everything.
+1. Basic implementation.
+2. Min heap

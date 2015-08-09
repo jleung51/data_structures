@@ -5,6 +5,7 @@
  *
  * This C program contains implementations of a heap, implemented using an
  * array of integers.
+ * Currently, only a max heap is supported.
  *
  */
 
