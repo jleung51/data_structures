@@ -88,7 +88,7 @@ class BinaryTree
     
     // This method runs an in-order traversal of the tree, and executes a
     // function on each value.
-    //void InOrder( function foo );
+    void InOrder( T(*foo)() );
     
     // This method prints a description of nodes and their hierarchy.
     // The description will detail how the binary tree should be drawn visually.
@@ -98,24 +98,30 @@ class BinaryTree
     BinaryNode<T>* root;
     unsigned int size;
 
+    // This private method calls CopyNodes_() to copy all the contents of one
+    // binary tree into another.
+    void CopyNodes( BinaryTree& tree_to_copy );
+    
+    // Only to be used by CopyNodes().
+    // This private method copies all child nodes of and including to_copy
+    // from its binary tree to the binary tree of parent, where parent's
+    // child node in direction d of the new tree corresponds to the node to_copy
+    // in the copied tree.
+    void CopyNodes_( BinaryNode* parent,
+                     direction d,
+                     BinaryNode* node_to_copy );
+
 /*
     void PrintNodes_Depth( unsigned int depth );  // Only for use by PrintNodes_().
     void PrintNodes_( unsigned int depth );  // Only for use by PrintNodes().
     void PrintTreeElements();  // Only for use by PrintTree().
     void ElementsToArray( T* array, int* elements_copied );  // Only for use by ToArray().
 */
+
 };
 
-/*
 
-// Constructor
-template <class T>
-BinaryNode<T>::BinaryNode( T new_value )
-{
-  value = new_value;
-  left = nullptr;
-  right = nullptr;
-}
+/*
 
 // ESSENTIAL METHODS:
 
