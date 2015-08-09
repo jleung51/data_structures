@@ -37,6 +37,14 @@ static void CheckHeapArray( char* func_name, HeapArray* arr );
 // is out of bounds.
 static void CheckBounds( char* func_name, HeapArray* arr, long index );
 
+// This function reasserts the properties of a max heap by bubbling up from a
+// given node after an insert.
+static void BubbleUp( HeapArray* ha, unsigned long index );
+
+// This function reasserts the properties of a max heap by bubbling down from
+// the root after an insert.
+static void BubbleDown( HeapArray* ha );
+
 // STATIC FUNCTIONS:
 
 // This function prints an error message and exits the program if a pointer
