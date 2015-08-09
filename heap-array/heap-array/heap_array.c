@@ -83,7 +83,3 @@ static void CheckBounds( char* func_name, HeapArray* arr, long index )
 }
 
 // CONSTRUCTORS/DESTRUCTOR:
-
-// ACCESSORS:
-
-// MUTATORS:
