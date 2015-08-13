@@ -50,6 +50,9 @@ static unsigned long HeapArrayRight( unsigned long index );
 // HeapArray* ha:
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
+// unsigned long index:
+//   Assumed to be valid; if it receives an invalid index, an error message
+//   will be displayed.
 static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index );
 
 // This function reasserts the properties of a max heap by bubbling up from a
@@ -120,11 +123,20 @@ static unsigned long HeapArrayRight( unsigned long index )
 // HeapArray* ha:
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
+// unsigned long index:
+//   Assumed to be valid; if it receives an invalid index, an error message
+//   will be displayed.
 static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
 {
   if( ha == NULL )
   {
     printf( "Error: HeapArrayNumOfChildren was given an invalid pointer.\n" );
+    exit( 1 );
+  }
+  else if( index >= ha->len_ )
+  {
+    printf( "Error: HeapArrayNumOfChildren was given an invalid index "\
+            "(%lu).\n", index );
     exit( 1 );
   }
 
