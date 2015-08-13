@@ -31,7 +31,7 @@ HeapArray* HeapArrayCreate();
 // NULL is returned if:
 //   Memory allocation fails.
 //   The given pointer is invalid.
-HeapArray* HeapArrayCreateFromArray( int* arr );
+HeapArray* HeapArrayCreateFromArray( int* arr, unsigned long size );
 
 // Copy constructor
 // This function returns a pointer to a heap which contains the same contents
