@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-08-09
+ * Last edited: 2015-08-12
  *
  * This C program contains implementations of a heap, implemented using an
  * array of integers.
@@ -34,6 +34,21 @@ typedef struct HeapArray
 // 0 (false) is returned if:
 //   The index is valid.
 static int OutOfBounds( HeapArray* ha, unsigned long index );
+
+// This function returns the index of the parent of a given element in the heap.
+static unsigned long HeapArrayParent( unsigned long index );
+
+// This function returns the index of the left child of a given element
+// in the heap.
+static unsigned long HeapArrayLeft( unsigned long index );
+
+// This function returns the index of the right child of a given element
+// in the heap.
+static unsigned long HeapArrayRight( unsigned long index );
+
+// This function returns whether or not the given node is a leaf node.
+// Non-zero (true) is returned if the given
+static int HeapArrayNodeIsLeaf( HeapArray* ha, unsigned long index );
 
 // This function reasserts the properties of a max heap by bubbling up from a
 // given node after an insert.

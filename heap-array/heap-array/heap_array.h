@@ -52,9 +52,6 @@ int HeapArrayDelete( HeapArray* ha );
 
 // BASIC FUNCTIONS:
 
-// This function returns the index of the parent of a given element in the heap.
-unsigned long HeapArrayParent( unsigned long index );
-
 // This function inserts a given element in the heap, and reasserts the
 // properties of the max/min heap by bubbling up.
 // Non-zero (true) is returned if:
