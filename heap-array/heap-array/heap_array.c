@@ -46,9 +46,11 @@ static unsigned long HeapArrayLeft( unsigned long index );
 // in the heap.
 static unsigned long HeapArrayRight( unsigned long index );
 
-// This function returns whether or not the given node is a leaf node.
-// Non-zero (true) is returned if the given
-static int HeapArrayNodeIsLeaf( HeapArray* ha, unsigned long index );
+// This function returns the number of children of a given node.
+// HeapArray* ha:
+//   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
+//   an error message will be displayed.
+static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index );
 
 // This function reasserts the properties of a max heap by bubbling up from a
 // given node after an insert.
