@@ -33,7 +33,7 @@ typedef struct HeapArray
 //   The index is out of bounds.
 // 0 (false) is returned if:
 //   The index is valid.
-static int OutOfBounds( HeapArray* ha, unsigned long index );
+static int HeapArrayOutOfBounds( HeapArray* ha, unsigned long index );
 
 // This function returns the index of the parent of a given element in the heap.
 static unsigned long HeapArrayParent( unsigned long index );
@@ -57,14 +57,14 @@ static int HeapArrayNodeIsLeaf( HeapArray* ha, unsigned long index );
 //   an error message will be displayed.
 // unsigned long index:
 //   If out of bounds, an error message will be displayed.
-static void BubbleUp( HeapArray* ha, unsigned long index );
+static void HeapArrayBubbleUp( HeapArray* ha, unsigned long index );
 
 // This function reasserts the properties of a max heap by bubbling down from
 // the root after an insert.
 // HeapArray* ha:
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
-static void BubbleDown( HeapArray* ha );
+static void HeapArrayBubbleDown( HeapArray* ha );
 
 // STATIC FUNCTIONS:
 
