@@ -19,8 +19,8 @@
 typedef struct HeapArray
 {
   int* array_;
-  unsigned long len_;
-  int allocated_;
+  unsigned long size_;
+  int is_allocated_;
 } HeapArray;
 
 // STATIC FUNCTION PROTOTYPES:
@@ -89,7 +89,7 @@ static int HeapArrayOutOfBounds( HeapArray* ha, unsigned long index )
     exit( 1 );
   }
   
-  if( index >= ha->len_ )
+  if( index >= ha->size_ )
   {
     return 1;
   }
@@ -133,7 +133,7 @@ static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
     printf( "Error: HeapArrayNumOfChildren was given an invalid pointer.\n" );
     exit( 1 );
   }
-  else if( index >= ha->len_ )
+  else if( index >= ha->size_ )
   {
     printf( "Error: HeapArrayNumOfChildren was given an invalid index "\
             "(%lu).\n", index );
@@ -141,7 +141,7 @@ static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
   }
 
   unsigned long left_index = HeapArrayLeft(index);
-  unsigned long size = ha->len_;
+  unsigned long size = ha->size_;
 
   if( left_index < size )
   {
