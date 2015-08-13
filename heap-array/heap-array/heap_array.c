@@ -26,7 +26,7 @@ typedef struct HeapArray
 // STATIC FUNCTION PROTOTYPES:
 
 // This function detects if a given index is out of bounds.
-// HeapArray* ha:
+// HeapArray* ha (and its array):
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
 // Non-zero (true) is returned if:
@@ -47,7 +47,7 @@ static unsigned long HeapArrayLeft( unsigned long index );
 static unsigned long HeapArrayRight( unsigned long index );
 
 // This function returns the number of children of a given node.
-// HeapArray* ha:
+// HeapArray* ha (and its array):
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
 // unsigned long index:
@@ -57,7 +57,7 @@ static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index );
 
 // This function reasserts the properties of a max heap by bubbling up from a
 // given node after an insert.
-// HeapArray* ha:
+// HeapArray* ha (and its array):
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
 // unsigned long index:
@@ -66,7 +66,7 @@ static void HeapArrayBubbleUp( HeapArray* ha, unsigned long index );
 
 // This function reasserts the properties of a max heap by bubbling down from
 // the root after an insert.
-// HeapArray* ha:
+// HeapArray* ha (and its array):
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
 static void HeapArrayBubbleDown( HeapArray* ha );
@@ -74,7 +74,7 @@ static void HeapArrayBubbleDown( HeapArray* ha );
 // STATIC FUNCTIONS:
 
 // This function detects if a given index is out of bounds.
-// HeapArray* ha:
+// HeapArray* ha (and its array):
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
 // Non-zero (true) is returned if:
@@ -86,6 +86,12 @@ static int HeapArrayOutOfBounds( HeapArray* ha, unsigned long index )
   if( ha == NULL )
   {
     printf( "Error: HeapArrayOutOfBounds was given an invalid pointer.\n" );
+    exit( 1 );
+  }
+  else if( ha->arr_ == NULL )
+  {
+    printf( "Error: HeapArrayOutOfBounds was given a HeapArray with an "\
+            "invalid array pointer.\n" );
     exit( 1 );
   }
   
@@ -120,7 +126,7 @@ static unsigned long HeapArrayRight( unsigned long index )
 }
 
 // This function returns the number of children of a given node.
-// HeapArray* ha:
+// HeapArray* ha (and its array):
 //   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
 //   an error message will be displayed.
 // unsigned long index:
@@ -131,6 +137,12 @@ static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
   if( ha == NULL )
   {
     printf( "Error: HeapArrayNumOfChildren was given an invalid pointer.\n" );
+    exit( 1 );
+  }
+  else if( ha->arr_ == NULL )
+  {
+    printf( "Error: HeapArrayNumOfChildren was given a HeapArray with an "\
+            "invalid array pointer.\n" );
     exit( 1 );
   }
   else if( index >= ha->size_ )
