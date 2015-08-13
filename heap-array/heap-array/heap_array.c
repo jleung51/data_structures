@@ -115,3 +115,35 @@ static unsigned long HeapArrayRight( unsigned long index )
 {
   return index * 2 + 2;
 }
+
+// This function returns the number of children of a given node.
+// HeapArray* ha:
+//   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
+//   an error message will be displayed.
+static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
+{
+  if( ha == NULL )
+  {
+    printf( "Error: HeapArrayNumOfChildren was given an invalid pointer.\n" );
+    exit( 1 );
+  }
+
+  unsigned long left_index = HeapArrayLeft(index);
+  unsigned long size = ha->len_;
+
+  if( left_index < size )
+  {
+    if( left_index+1 < size )  // Index of right child
+    {
+      return 2;
+    }
+    else
+    {
+      return 1;
+    }
+  }
+  else
+  {
+    return 0;
+  }
+}

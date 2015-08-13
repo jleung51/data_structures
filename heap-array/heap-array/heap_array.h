@@ -77,6 +77,6 @@ int HeapArrayRemove( HeapArray* ha, int* return_value );
 //   The operation is successful.
 // 0 (false) is returned and the value at the pointer is unchanged if:
 //   The given pointer is invalid.
-int HeapArraySize( HeapArray* ha, int* return_value_size );
+int HeapArraySize( HeapArray* ha, int* return_size );
 
 #endif
