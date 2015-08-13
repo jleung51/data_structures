@@ -52,7 +52,7 @@ int HeapArrayDelete( HeapArray* ha );
 
 // BASIC FUNCTIONS:
 
-// This function inserts a given element in the heap, and reasserts the
+// This function inserts a given value in the heap, and reasserts the
 // properties of the max/min heap by bubbling up.
 // Non-zero (true) is returned if:
 //   The operation is successful.
@@ -60,7 +60,7 @@ int HeapArrayDelete( HeapArray* ha );
 //   The given pointer is invalid.
 int HeapArrayInsert( HeapArray* ha, int value );
 
-// This function removes the largest (max heap) or smallest (min heap) element
+// This function removes the largest (max heap) or smallest (min heap) value
 // in the heap, assigns it to the given pointer, and reasserts the properties of
 // the max/min heap by bubbling down.
 // Non-zero (true) is returned if:
@@ -68,7 +68,7 @@ int HeapArrayInsert( HeapArray* ha, int value );
 // 0 (false) is returned and the value at the pointer is unchanged if:
 //   The given pointer is invalid.
 //   The heap is empty.
-int HeapArrayRemove( HeapArray* ha, int* return_value_element );
+int HeapArrayRemove( HeapArray* ha, int* return_value );
 
 // PROPERTIES:
 
