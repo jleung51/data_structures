@@ -85,12 +85,12 @@ static int HeapArrayOutOfBounds( HeapArray* ha, unsigned long index )
 {
   if( ha == NULL )
   {
-    printf( "Error: HeapArrayOutOfBounds was given an invalid pointer.\n" );
+    printf( "Error: HeapArrayOutOfBounds() was given an invalid pointer.\n" );
     exit( 1 );
   }
   else if( ha->arr_ == NULL )
   {
-    printf( "Error: HeapArrayOutOfBounds was given a HeapArray with an "\
+    printf( "Error: HeapArrayOutOfBounds() was given a HeapArray with an "\
             "invalid array pointer.\n" );
     exit( 1 );
   }
@@ -141,13 +141,13 @@ static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
   }
   else if( ha->arr_ == NULL )
   {
-    printf( "Error: HeapArrayNumOfChildren was given a HeapArray with an "\
+    printf( "Error: HeapArrayNumOfChildren() was given a HeapArray with an "\
             "invalid array pointer.\n" );
     exit( 1 );
   }
   else if( index >= ha->size_ )
   {
-    printf( "Error: HeapArrayNumOfChildren was given an invalid index "\
+    printf( "Error: HeapArrayNumOfChildren() was given an invalid index "\
             "(%lu).\n", index );
     exit( 1 );
   }
