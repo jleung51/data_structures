@@ -68,4 +68,28 @@ static void HeapArrayBubbleDown( HeapArray* ha );
 
 // STATIC FUNCTIONS:
 
-//TODO
+// This function detects if a given index is out of bounds.
+// HeapArray* ha:
+//   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
+//   an error message will be displayed.
+// Non-zero (true) is returned if:
+//   The index is out of bounds.
+// 0 (false) is returned if:
+//   The index is valid.
+static int HeapArrayOutOfBounds( HeapArray* ha, unsigned long index )
+{
+  if( ha == NULL )
+  {
+    printf( "Error: HeapArrayOutOfBounds was given an invalid pointer.\n" );
+    exit( 1 );
+  }
+  
+  if( index >= ha->len_ )
+  {
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
+}
