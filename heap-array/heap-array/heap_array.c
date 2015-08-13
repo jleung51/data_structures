@@ -18,7 +18,7 @@
 
 typedef struct HeapArray
 {
-  int* array_;
+  int* arr_;
   unsigned long size_;
   int is_allocated_;
 } HeapArray;
