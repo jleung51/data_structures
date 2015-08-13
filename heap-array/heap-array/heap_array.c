@@ -93,3 +93,23 @@ static int HeapArrayOutOfBounds( HeapArray* ha, unsigned long index )
     return 0;
   }
 }
+
+// This function returns the index of the parent of a given element in the heap.
+static unsigned long HeapArrayParent( unsigned long index )
+{
+  return (index-1) / 2;  // Floor division
+}
+
+// This function returns the index of the left child of a given element
+// in the heap.
+static unsigned long HeapArrayLeft( unsigned long index )
+{
+  return index * 2 + 1;
+}
+
+// This function returns the index of the right child of a given element
+// in the heap.
+static unsigned long HeapArrayRight( unsigned long index )
+{
+  return index * 2 + 2;
+}
