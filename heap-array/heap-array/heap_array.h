@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-08-09
+ * Last edited: 2015-08-12
  *
  * This C program contains implementations of a heap, implemented using an
  * array of integers.
@@ -71,25 +71,9 @@ int HeapArrayInsert( HeapArray* ha, int value );
 // 0 (false) is returned and the value at the pointer is unchanged if:
 //   The given pointer is invalid.
 //   The heap is empty.
-int HeapArrayExtract( HeapArray* ha, int* return_value_element );
-
-// This function sets a given element in the heap to a given value.
-// Non-zero (true) is returned if:
-//   The operation is successful.
-// 0 (false) is returned if:
-//   The given pointer is invalid.
-//   The index is out of bounds.
-int HeapArraySet( HeapArray* ha, int value, unsigned long index );
+int HeapArrayRemove( HeapArray* ha, int* return_value_element );
 
 // PROPERTIES:
-
-// This function assigns the value at the given index to the given pointer.
-// Non-zero (true) is returned if:
-//   The operation is successful.
-// 0 (false) is returned if:
-//   The given pointer is invalid.
-//   The index is out of bounds.
-int HeapArrayGet( HeapArray* ha, int* value, unsigned long index );
 
 // This function assigns the current size of the heap to the given pointer.
 // Non-zero (true) is returned if:
