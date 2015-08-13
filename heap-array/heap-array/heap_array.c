@@ -136,7 +136,7 @@ static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
 {
   if( ha == NULL )
   {
-    printf( "Error: HeapArrayNumOfChildren was given an invalid pointer.\n" );
+    printf( "Error: HeapArrayNumOfChildren() was given an invalid pointer.\n" );
     exit( 1 );
   }
   else if( ha->arr_ == NULL )
