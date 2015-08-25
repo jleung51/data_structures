@@ -307,3 +307,15 @@ static void HeapArrayBubbleDown( HeapArray* ha )
   }
   return;
 }
+
+// CONSTRUCTORS/DESTRUCTOR:
+
+// Default constructor
+// This function returns a pointer to an empty heap.
+// NULL is returned if:
+//   Memory allocation fails.
+HeapArray* HeapArrayCreate()
+{
+  HeapArray* ha = malloc( sizeof(HeapArray) );
+  return ha;
+}
