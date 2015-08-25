@@ -204,7 +204,8 @@ static void HeapArrayBubbleUp( HeapArray* ha, unsigned long index )
   int temp;
   unsigned long parent_index = HeapArrayParent( index );
   while( index > 0 &&
-         ha->arr_[parent_index] > ha->arr_[index] )
+         ha->arr_[parent_index] > ha->arr_[index] )  // Swaps index and parent
+                                                     // if parent is larger
   {
     temp = ha->arr_[parent_index];
     ha->arr_[parent_index] = ha->arr_[index];
