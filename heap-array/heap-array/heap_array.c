@@ -53,7 +53,8 @@ static unsigned long HeapArrayRight( unsigned long index );
 // unsigned long index:
 //   Assumed to be valid; if it receives an invalid index, an error message
 //   will be displayed.
-static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index );
+static unsigned int HeapArrayNumOfChildren( HeapArray* ha,
+                                            unsigned long index );
 
 // This function reasserts the properties of a max heap by bubbling up from a
 // given node after an insert.
@@ -132,7 +133,8 @@ static unsigned long HeapArrayRight( unsigned long index )
 // unsigned long index:
 //   Assumed to be valid; if it receives an invalid index, an error message
 //   will be displayed.
-static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
+static unsigned int HeapArrayNumOfChildren( HeapArray* ha,
+                                            unsigned long index )
 {
   if( ha == NULL )
   {
