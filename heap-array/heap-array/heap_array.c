@@ -171,3 +171,45 @@ static int HeapArrayNumOfChildren( HeapArray* ha, unsigned long index )
     return 0;
   }
 }
+
+// This function reasserts the properties of a max heap by bubbling up from a
+// given node after an insert.
+// HeapArray* ha (and its array):
+//   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
+//   an error message will be displayed.
+// unsigned long index:
+//   If out of bounds, an error message will be displayed.
+static void HeapArrayBubbleUp( HeapArray* ha, unsigned long index )
+{
+  if( ha == NULL )
+  {
+    printf( "Error: HeapArrayBubbleUp() was given an invalid pointer.\n" );
+    exit( 1 );
+  }
+  else if( ha->arr_ == NULL )
+  {
+    printf( "Error: HeapArrayBubbleUp() was given a HeapArray with an "\
+            "invalid array pointer.\n" );
+    exit( 1 );
+  }
+  else if( index >= ha->size_ )
+  {
+    printf( "Error: HeapArrayBubbleUp() was given an invalid index "\
+            "(%lu).\n", index );
+    exit( 1 );
+  }
+
+  int temp;
+  unsigned long parent_index = HeapArrayParent( index );
+  while( index > 0 &&
+         ha->arr_[parent_index] > ha->arr_[index] )
+  {
+    temp = ha->arr_[parent_index];
+    ha->arr_[parent_index] = ha->arr_[index];
+    ha->arr_[index] = temp;
+    
+    index = parent_index;
+    parent_index = HeapArrayParent( index );
+  }
+  return;
+}
