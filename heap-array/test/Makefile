@@ -1,9 +1,11 @@
 # Source files
-SOURCES  = ../heap-array/heap_array.c \
+SOURCES  = ../int-array/int_array.c \
+           ../heap-array/heap_array.c \
            test.c
 
 # Header files
-HSOURCES = ../heap-array/heap_array.h
+HSOURCES = ../int-array/int_array.h \
+           ../heap-array/heap_array.h
 
 # Compiler options
 CFLAGS = -std=c99 -g -Wall
@@ -35,4 +37,4 @@ mem_chk: $(SOURCES) $(HSOURCES)
 # $ make clean
 # Removes created files
 clean:
-	rm -f output *.o *~ ../*~ ../int_array/*~
+	rm -f output *.o *~ ../*~ ../heap-array/*~ ../int-array/*~
