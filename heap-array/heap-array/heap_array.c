@@ -35,6 +35,12 @@ typedef struct HeapArray
 //   The index is valid.
 static int HeapArrayOutOfBounds( HeapArray* ha, unsigned long index );
 
+// This function swaps the values of two given integer pointers.
+// int* val1 and val2:
+//   Assumed to be non-NULL; if they receive a NULL pointer as an argument,
+//   an error message will be displayed.
+static void HeapArraySwap( int* val1, int* val2 );
+
 // This function returns the index of the parent of a given node in the heap.
 static unsigned long HeapArrayParent( unsigned long index );
 
@@ -104,6 +110,31 @@ static int HeapArrayOutOfBounds( HeapArray* ha, unsigned long index )
   {
     return 0;
   }
+}
+
+// This function swaps the values of two given integer pointers.
+// int* val1 and val2:
+//   Assumed to be non-NULL; if they receive a NULL pointer as an argument,
+//   an error message will be displayed.
+static void HeapArraySwap( int* val1, int* val2 )
+{
+  if( val1 == NULL )
+  {
+    printf( "Error: HeapArraySwap() was given an invalid pointer for the "\
+            "first value.\n" );
+    exit( 1 );
+  }
+  else if( val2 == NULL )
+  {
+    printf( "Error: HeapArraySwap() was given an invalid pointer for the "\
+            "second value.\n" );
+    exit( 1 );
+  }
+
+  int temp = *val1;
+  *val1 = *val2;
+  *val2 = temp;
+  return;
 }
 
 // This function returns the index of the parent of a given node in the heap.
