@@ -1,19 +1,23 @@
 /*
  *
  * Author: Jeffrey Leung
- * Date: 2015-05-05
+ * Date: 2015-08-08
  *
- * This program tests implementations of the binary tree in binary_node.cpp.
+ * This program tests implementations of the binary tree class
+ * in binary_tree.hpp.
  *
  */
 
 #include <iostream>
 #include <assert.h>
 
+#include "../binary_node.hpp"
 #include "../binary_tree.hpp"
 
 int main()
 {
+
+/*
   BinaryNode<int> root( 1 );
   BinaryNode<int> node1( 1 );
   BinaryNode<int> node2( 2 );
@@ -88,6 +92,7 @@ int main()
   std::cout << "A visualization of the final structure:\n\n" ;
   root.PrintNodes();
   std::cout << "\n" ;
+*/
 
   return 0;
 }
