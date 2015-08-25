@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-29
+ * Last edited: 2015-08-25
  *
  * This C program contains implementations of an IntArray, a self-expanding
  * array of integers, created/accessed/mutated through functions.
@@ -21,6 +21,11 @@ typedef struct IntArray IntArray;
 // This function creates an IntArray allocated in the heap.
 // User is responsible for deleting the IntArray.
 IntArray* IntArrayCreate();
+
+// Parameterized constructor
+// This function utilizes an already-created array, and creates an IntArray
+// allocated in the heap.
+IntArray* IntArrayImport( int* arr, unsigned long len );
 
 // Copy constructor
 // This function returns a deep copy of IntArray arr, allocated in the heap.

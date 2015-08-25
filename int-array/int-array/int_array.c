@@ -1,7 +1,9 @@
+//TODO: Allow for imported arrays to use methods (i.e. allocated_ = 0)
+
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-06-29
+ * Last edited: 2015-08-25
  *
  * This C program contains implementations of an IntArray, a self-expanding
  * array of integers, created/accessed/mutated through functions.
@@ -99,6 +101,27 @@ IntArray* IntArrayCreate()
   CheckNull( "IntArrayCreate()", arr->array_ );
 
   return arr;
+}
+
+// Parameterized constructor
+// This function utilizes an already-created array, and creates an IntArray
+// allocated in the heap.
+IntArray* IntArrayImport( int* arr, unsigned long len )
+{
+  if( arr == NULL )
+  {
+    printf( "Error: IntArrayImport() was given an invalid array.\n" );
+    exit( 1 );
+  }
+  
+  IntArray* arr_new = malloc( sizeof(IntArray) );
+  CheckNull( "IntArrayImport()", arr_new );
+  
+  arr_new->array_ = arr;  
+  arr_new->len_ = len;
+  arr_new->allocated_ = 0;
+  
+  return arr_new;
 }
 
 // Copy constructor
