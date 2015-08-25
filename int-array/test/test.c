@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../int_array/int_array.h"
+#include "../int-array/int_array.h"
 
 // STATIC FUNCTIONS:
 
