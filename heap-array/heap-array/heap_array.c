@@ -1,7 +1,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-08-12
+ * Last edited: 2015-08-25
  *
  * This C program contains implementations of a heap, implemented using an
  * array of integers.
@@ -240,6 +240,70 @@ static void HeapArrayBubbleUp( HeapArray* ha, unsigned long index )
     HeapArraySwap( &(ha->arr_[parent_index]), &(ha->arr_[index]) );
     index = parent_index;
     parent_index = HeapArrayParent( index );
+  }
+  return;
+}
+
+// This function reasserts the properties of a max heap by bubbling down from
+// the root after an insert.
+// HeapArray* ha (and its array):
+//   Assumed to be non-NULL; if it receives a NULL pointer as an argument,
+//   an error message will be displayed.
+static void HeapArrayBubbleDown( HeapArray* ha )
+{
+  if( ha == NULL )
+  {
+    printf( "Error: HeapArrayBubbleDown() was given an invalid pointer.\n" );
+    exit( 1 );
+  }
+  else if( ha->arr_ == NULL )
+  {
+    printf( "Error: HeapArrayBubbleDown() was given a HeapArray with an "\
+            "invalid array pointer.\n" );
+    exit( 1 );
+  }
+  
+  unsigned long index = 0;
+  unsigned long index_left;
+  unsigned long index_right;
+  unsigned int num_of_children = HeapArrayNumOfChildren( ha, index );
+  int swapped = 1;
+  
+  while( swapped && num_of_children > 0 )
+  {
+    swapped = 0;
+    index_left = HeapArrayLeft( index );
+    
+    if( num_of_children == 1 )  // Left child exists; right child does not
+    {
+      if( ha->arr_[index_left] >  ha->arr_[index] )
+      {
+        HeapArraySwap( &(ha->arr_[index_left]), &(ha->arr_[index]) );
+        index = index_left;
+        swapped = 1;
+      }
+    }
+    
+    else  // Both left and right children exist
+    {
+      index_right = HeapArrayRight( index );
+      if( ha->arr_[index_left] >  ha->arr_[index] &&
+          ha->arr_[index_left] >= ha->arr_[index_right] )
+      {
+        HeapArraySwap( &(ha->arr_[index_left]), &(ha->arr_[index]) );
+        index = index_left;
+        swapped = 1;
+      }
+      else if( ha->arr_[index_right] >  ha->arr_[index] &&
+               ha->arr_[index_right] >= ha->arr_[index_left] )
+      {
+        HeapArraySwap( &(ha->arr_[index_right]), &(ha->arr_[index]) );
+        index = index_right;
+        swapped = 1;
+      }
+    }
+    
+    num_of_children = HeapArrayNumOfChildren( ha, index );
   }
   return;
 }
