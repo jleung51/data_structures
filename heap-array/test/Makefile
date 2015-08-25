@@ -20,7 +20,7 @@ CFLAGS = -std=c99 -g -Wall
 help:
 	# INSTRUCTIONS:
 	#   To test heap_array.c, run: make output
-	#   To test for memory allocation, run: make mem_chk
+	#   To test for memory allocation, run: make output mem_chk
 	#   To remove compiled output files, run: make clean
 
 # $ make
@@ -30,7 +30,6 @@ output: $(SOURCES) $(HSOURCES)
 
 # $ make mem_chk
 mem_chk: $(SOURCES) $(HSOURCES)
-	gcc $(CFLAGS) $(SOURCES) -o output -lm
 	valgrind --leak-check=full --track-origins=yes ./output
 
 # $ make clean
