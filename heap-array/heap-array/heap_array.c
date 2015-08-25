@@ -1,3 +1,5 @@
+//TODO: Use an IntArray to allow the heap to be freely self-expandable.
+
 /*
  *
  * Author: Jeffrey Leung
