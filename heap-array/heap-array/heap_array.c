@@ -321,3 +321,20 @@ HeapArray* HeapArrayCreate()
   HeapArray* ha = malloc( sizeof(HeapArray) );
   return ha;
 }
+
+// Parameterized constructor
+// This function returns a pointer to a heap which directly uses the pointer of
+// a given, pre-existing array.
+// The original array may be modified by the heap, and cannot be deallocated
+// until the heap operations are complete. Calling HeapArrayDelete() will not
+// deallocate the array.
+// NULL is returned if:
+//   Memory allocation fails.
+//   The given pointer is invalid.
+HeapArray* HeapArrayCreateFromArray( int* arr, unsigned long size )
+{
+  //HeapArray* ha = malloc( sizeof(HeapArray) );
+  //TODO
+  
+  return NULL;
+}
