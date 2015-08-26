@@ -150,7 +150,10 @@ IntArray* IntArrayCopy( IntArray* arr )
 void IntArrayDelete( IntArray* arr )
 {
   CheckIntArray( "IntArrayDelete()", arr );
-  free( arr->array_ );
+  if( arr->allocated_ != 0 )  // IntArray created from existing array
+  {
+    free( arr->array_ );
+  }
   free( arr );
   return;
 }
