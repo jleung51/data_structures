@@ -20,7 +20,7 @@ CFLAGS = -std=c++11 -g -Wall
 help:
 	# INSTRUCTIONS:
 	#   To test array2.hpp, run: make output
-	#   To test memory allocation, run: make mem_chk
+	#   To test memory allocation, run: make output mem_chk
 	#   To remove compiled output files, run: make clean
 
 # $ make output
@@ -30,7 +30,6 @@ output: $(SOURCES) $(HSOURCES)
 
 # $ make mem_chk
 mem_chk: $(SOURCES) $(HSOURCES)
-	g++ $(CFLAGS) $(SOURCES) -o output
 	valgrind --leak-check=full ./output
 
 # $ make clean
