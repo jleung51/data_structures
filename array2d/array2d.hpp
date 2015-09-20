@@ -18,11 +18,12 @@ template <class T>
 class Array2d
 {
   public:
-    // Constructors/Destructor:
+    // Constructors/Destructor/Overloads:
     Array2d();  // Creates a 10x10 array.
     Array2d( unsigned int width, unsigned int height );
     Array2d( const Array2d& arr );
     ~Array2d();
+    T& operator()( unsigned int x, unsigned int y );
 
     // Mutators:
 
@@ -146,6 +147,13 @@ template <typename T>
 Array2d<T>::~Array2d()
 {
   delete [] array_;
+}
+
+// Operator overload of ()
+template <typename T>
+T& Array2d<T>::operator()( unsigned int x, unsigned int y )
+{
+  return array_[ Index( x, y ) ];
 }
 
 

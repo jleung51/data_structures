@@ -23,7 +23,7 @@ void PrintArray( Array2d<T> arr, unsigned int width, unsigned int height )
     {
       try
       {
-        std::cout << arr.Get( x, y ) << " ";
+        std::cout << arr( x, y ) << " ";
       }
       catch( std::out_of_range except )
       {
