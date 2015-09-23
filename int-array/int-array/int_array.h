@@ -61,12 +61,15 @@ int* IntArrayToArray( IntArray* arr );
 void IntArraySet( IntArray* arr, unsigned long index, int value );
 
 // This function adds an element to the end of the IntArray.
+// Program will exit if IntArrayAppend() is called on an imported array.
 void IntArrayAppend( IntArray* arr, int value );
 
 // This function removes the element at a given index in an IntArray.
+// Program will exit if IntArrayRemove() is called on an imported array.
 void IntArrayRemove( IntArray* arr, unsigned long index );
 
 // This function removes the element at the end of the IntArray.
+// Program will exit if IntArrayRemoveLast() is called on an imported array.
 void IntArrayRemoveLast( IntArray* arr );
 
 #endif

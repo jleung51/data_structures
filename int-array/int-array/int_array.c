@@ -248,9 +248,11 @@ void IntArraySet( IntArray* arr, unsigned long index, int value )
 
 // This function adds an element to the end of an IntArray, expanding its
 // size if necessary.
+// Program will exit if IntArrayAppend() is called on an imported array.
 void IntArrayAppend( IntArray* arr, int value )
 {
   CheckIntArray( "IntArrayAppend()", arr );
+  CheckImported( "IntArrayAppend()", arr );
 
   // Expands array to double the size
   if( arr->len_ >= arr->allocated_ )
@@ -272,9 +274,11 @@ void IntArrayAppend( IntArray* arr, int value )
 }
 
 // This function removes the element at a given index in an IntArray.
+// Program will exit if IntArrayRemove() is called on an imported array.
 void IntArrayRemove( IntArray* arr, unsigned long index )
 {
   CheckIntArray( "IntArrayRemove()", arr );
+  CheckImported( "IntArrayRemove()", arr );
   CheckBounds( "IntArrayRemove()", arr, index );
 
   arr->array_[index] = arr->array_[arr->len_-1];
@@ -283,9 +287,11 @@ void IntArrayRemove( IntArray* arr, unsigned long index )
 }
 
 // This function removes the element at the end of the IntArray.
+// Program will exit if IntArrayRemoveLast() is called on an imported array.
 void IntArrayRemoveLast( IntArray* arr )
 {
   CheckIntArray( "IntArrayRemoveLast()", arr );
+  CheckImported( "IntArrayRemoveLast()", arr );
 
   if( arr->len_ == 0 )
   {
