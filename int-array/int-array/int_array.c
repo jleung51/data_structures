@@ -35,6 +35,11 @@ static void CheckNull( char* func_name, void* ptr );
 // IntArray is given.
 static void CheckIntArray( char* func_name, IntArray* arr );
 
+// This function prints an error message and exits the program if the length
+// of the array is 0.
+// Used for functions which remove elements from the array.
+static void CheckRemoveNothing( char* func_name, IntArray* arr );
+
 // This function prints an error message and exits the program if a given index
 // is out of bounds.
 static void CheckBounds( char* func_name, IntArray* arr, long index );
@@ -71,6 +76,22 @@ static void CheckIntArray( char* func_name, IntArray* arr )
   {
     printf( "Error: %s was given an IntArray with an invalid (null) "\
             "array.\n", func_name );
+    exit( 1 );
+  }
+  return;
+}
+
+// This function prints an error message and exits the program if the length
+// of the array is 0.
+// Used for functions which remove elements from the array.
+static void CheckRemoveNothing( char* func_name, IntArray* arr )
+{
+  CheckIntArray( "CheckRemoveNothing()", arr );
+  
+  if( arr->len_ == 0 )
+  {
+    printf( "Error: %s() cannot remove anything from an "\
+            "empty array.\n", func_name );
     exit( 1 );
   }
   return;
@@ -279,6 +300,7 @@ void IntArrayRemove( IntArray* arr, unsigned long index )
 {
   CheckIntArray( "IntArrayRemove()", arr );
   CheckImported( "IntArrayRemove()", arr );
+  CheckRemoveNothing( "IntArrayRemove()", arr );
   CheckBounds( "IntArrayRemove()", arr, index );
 
   arr->array_[index] = arr->array_[arr->len_-1];
@@ -292,13 +314,7 @@ void IntArrayRemoveLast( IntArray* arr )
 {
   CheckIntArray( "IntArrayRemoveLast()", arr );
   CheckImported( "IntArrayRemoveLast()", arr );
-
-  if( arr->len_ == 0 )
-  {
-    printf( "Error: IntArrayRemoveLast() cannot remove anything from an "\
-            "empty array.\n" );
-    exit( 1 );
-  }
+  CheckRemoveNothing( "IntArrayRemoveLast()", arr );
 
   arr->len_--;
   return;
