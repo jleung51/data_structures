@@ -34,6 +34,7 @@ IntArray* IntArrayCopy( IntArray* arr );
 
 // Destructor
 // This function frees the memory allocated for IntArray arr.
+// Should still be used even if the array is imported.
 void IntArrayDelete( IntArray* arr );
 
 // ACCESSORS:

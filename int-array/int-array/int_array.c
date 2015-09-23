@@ -87,6 +87,7 @@ static void CheckBounds( char* func_name, IntArray* arr, long index )
 
 // CONSTRUCTORS/DESTRUCTOR:
 
+// Default constructor
 // This function creates an IntArray allocated in the heap.
 // User is responsible for deleting the IntArray.
 IntArray* IntArrayCreate()
@@ -146,7 +147,9 @@ IntArray* IntArrayCopy( IntArray* arr )
   return arr_new;
 }
 
+// Destructor
 // This function frees the memory allocated for an IntArray.
+// Should still be used even if the array is imported.
 void IntArrayDelete( IntArray* arr )
 {
   CheckIntArray( "IntArrayDelete()", arr );
