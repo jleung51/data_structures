@@ -39,6 +39,10 @@ static void CheckIntArray( char* func_name, IntArray* arr );
 // is out of bounds.
 static void CheckBounds( char* func_name, IntArray* arr, long index );
 
+// This function prints an error message and exits the program if the IntArray
+// is imported (and therefore the size is set).
+static void CheckImported( char* func_name, IntArray* arr );
+
 // STATIC FUNCTIONS:
 
 // This function prints an error message and exits the program if a pointer
@@ -82,6 +86,21 @@ static void CheckBounds( char* func_name, IntArray* arr, long index )
   {
     printf( "Error: %s was given an invalid index ( %ld ) as the length of "\
             "the array is %lu .\n", func_name, index, arr->len_ );
+    exit( 1 );
+  }
+  return;
+}
+
+// This function prints an error message and exits the program if the IntArray
+// is imported (and therefore the size is set).
+static void CheckImported( char* func_name, IntArray* arr )
+{
+  CheckIntArray( "CheckImported()", arr );
+
+  if( arr->allocated_ == 0 )
+  {
+    printf( "Error: %s was given an array which was imported (and therefore "\
+            "cannot have its size modified.\n", func_name );
     exit( 1 );
   }
   return;
