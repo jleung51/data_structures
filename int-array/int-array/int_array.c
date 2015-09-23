@@ -3,7 +3,7 @@
 /*
  *
  * Author: Jeffrey Leung
- * Last edited: 2015-08-25
+ * Last edited: 2015-09-23
  *
  * This C program contains implementations of an IntArray, a self-expanding
  * array of integers, created/accessed/mutated through functions.
@@ -76,6 +76,8 @@ static void CheckIntArray( char* func_name, IntArray* arr )
 // is out of bounds.
 static void CheckBounds( char* func_name, IntArray* arr, long index )
 {
+  CheckIntArray( "CheckBounds()", arr );
+
   if( index <= -1 || arr->len_ <= index )
   {
     printf( "Error: %s was given an invalid index ( %ld ) as the length of "\
